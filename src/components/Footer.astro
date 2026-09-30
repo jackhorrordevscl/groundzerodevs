@@ -86,7 +86,19 @@ const t = getDictionary(lang);
     color: var(--color-on-dark-muted);
   }
   .mail {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
     overflow-wrap: anywhere;
+  }
+  /* Same 24x24 CSS px minimum target as the header switch (WCAG 2.2). */
+  .lang a,
+  .lang b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
   }
   .lang b {
     color: var(--color-amber);
