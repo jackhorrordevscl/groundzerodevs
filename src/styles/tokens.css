@@ -1,0 +1,58 @@
+/* Design tokens. Values taken from the approved C-Editorial design. */
+:root {
+  /* Palette */
+  --color-charcoal: #0b0e11;
+  --color-bone: #edebe4;
+  --color-amber: #ffb020;
+  --color-white: #ffffff;
+  --color-green: #2ea36b; /* functional states only (success, status) */
+
+  /* Neutrals used on bone and charcoal surfaces */
+  --color-ink-muted: #3a444d;
+  --color-ink-subtle: #4a5560;
+  --color-line: #6b757d;
+  --color-dark-line: #3a454f;
+  --color-dark-surface: #161c22;
+  --color-on-dark-muted: #b5bcc2;
+  --color-link-hover: #5a4400;
+
+  /* Semantic aliases */
+  --color-bg: var(--color-bone);
+  --color-text: var(--color-charcoal);
+  --color-accent: var(--color-amber);
+
+  /* Fonts (loaded from Google Fonts in BaseLayout) */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Type scale (px values from the design) */
+  --text-xs: 0.6875rem; /* 11 */
+  --text-sm: 0.8125rem; /* 13 */
+  --text-base: 1rem; /* 16 */
+  --text-md: 1.0625rem; /* 17 */
+  --text-lg: 1.375rem; /* 22 */
+  --text-xl: 2.125rem; /* 34 */
+  --text-2xl: 2.75rem; /* 44 */
+  --text-3xl: 3.25rem; /* 52 */
+  --text-4xl: 4rem; /* 64 */
+  --text-5xl: 4.75rem; /* 76 */
+  --text-6xl: 5.5rem; /* 88 */
+  --text-hero: 6.5rem; /* 104 */
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3.5rem;
+  --space-9: 4rem;
+  --space-10: 6rem;
+
+  /* Layout */
+  --gutter: 4rem; /* 64px page padding in the desktop design */
+  --container-max: 90rem; /* 1440px design width */
+}
