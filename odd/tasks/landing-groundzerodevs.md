@@ -37,7 +37,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [x] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
 - [x] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
 - [x] T6 SEO and analytics: meta, hreflang, sitemap, OG image, favicon, cookieless analytics. Check: hreflang valid; analytics event NOT seen (no token yet). Evidence: commits 92e96c8, 39765f9, ec8ff2b.
-- [ ] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review.
+- [x] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review. Evidence: commits 0219cf4, cc4a4b8, e4b5f9f, 66df8d9, 0771b92.
 - [ ] T8 Deploy to HostGator: `.htaccess` (HTTPS, caching), upload `dist/`, verify live. Check: both languages and form work on the real domain.
 - [ ] T9 Replace placeholder case images with real screenshots (blocked: user delivers the 4 captures).
 
@@ -79,8 +79,11 @@ Plan created 2026-09-30.
 - T6 done via delegated writer (trigger: 2+ non-trivial files). Commits 92e96c8 (hreflang es/en/x-default, canonical, `@astrojs/sitemap`, robots.txt, OG/Twitter, `og.png` 1200x630, no tagline so one image serves both languages), 39765f9 (favicon svg + ico), ec8ff2b (Cloudflare Web Analytics beacon rendered only when `PUBLIC_CF_BEACON_TOKEN` is set at build; `docs/analytics.md`). Parent verification: `npm run build` OK (2 pages); hreflang and canonical reciprocal and absolute on both pages; sitemap-index, sitemap-0 and robots.txt in dist; favicon files in dist; no beacon without the token (writer also verified the dummy-token build).
 - T6 NOT verified: analytics event (needs the real Cloudflare token), favicon in a browser tab, social-card validators, Google hreflang tooling, `test:contact` (no PHP in this run). `.env.example` could not be written (path denied by permission settings); `docs/analytics.md` tells the user to create `.env` directly. hreflang uses plain `es`/`en`, `og:locale` uses es_CL/en_US.
 
+- T7 done via delegated writer (trigger: 2+ non-trivial files). Commits 0219cf4 and cc4a4b8 (ES|EN switch, footer switch and footer email link at 24px minimum target), e4b5f9f (mobile menu below 1024px: button with aria-expanded/aria-controls, Enter/Space, Escape, closes on link; nav stays visible without JS), 66df8d9 (content capped at 1440px via `--pad-x`, backgrounds full-bleed), 0771b92 (non-blocking font CSS with noscript fallback, inlined stylesheets, brand link aria-label removed and unused `homeLabel` key dropped). Parent verification: `npm run build` OK (2 pages), tree clean, `aria-expanded` present on both pages, no `jmartinez@`. Writer verification (Playwright + Brave, 11 widths 320-1920, both languages): 0 overflow, target sizes >=24px, contrast AA with menu open and closed, menu keyboard/mouse behavior, JS-off and reduced-motion, screenshots viewed. Lighthouse (Brave headless on preview) 100/100/100/100 on `/` and `/en/`, mobile and desktop; before, only `/en/` mobile Performance was 92. One run after; numbers vary.
+- T7 NOT verified: real devices, non-Chromium browsers, screen readers, menu-button hover contrast, `/en/` 1920 screenshot, widths between 640 and 1024 beyond 640/768, Lighthouse on the real host (T8). Decisions taken by the writer: at 320px the menu button wraps under the brand; on mobile the ES|EN switch and WhatsApp CTA live inside the menu panel.
+
 ## Next step
-T7: responsive, accessibility, performance (ES|EN link under 24px, mobile menu, max width at 1920, contrast, Lighthouse). Then T8 (deploy), T9 (screenshots). User pending: Cloudflare token to enable analytics.
+T8: deploy to HostGator (`.htaccess` HTTPS/caching/www redirect, `allowed_hosts`, upload `dist/`, real form test both languages, SPF/DKIM/DMARC, 403 on `contact.config.php`). Needs the user's cPanel/FTP access decisions and the Cloudflare token (deferred). T9 (screenshots) blocked on the user.
 
 ## Previous next step
 T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
