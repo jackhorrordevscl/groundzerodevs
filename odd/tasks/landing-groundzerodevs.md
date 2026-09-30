@@ -65,5 +65,10 @@ Plan created 2026-09-30.
 - Open for T6: hreflang alternates (links currently carry `hreflang` attributes only in the language switch), sitemap, OG, favicon.
 - Open for T7: language-switch link (`ES`/`EN`) height under 24px, mobile nav, max width at 1920.
 
+- Full re-verification 2026-09-30 (Playwright + Brave 154, fresh build, `astro preview`), commit 08f84a7: `/` and `/en/` at 320/360/390/640/768/1024/1100/1280/1440/1600/1920: no overflow, no off-screen elements (except honeypot), no missing anchors or duplicate ids, all form fields labeled, no heading skips, 1 h1 and 5 h2, contrast AA on 111 text nodes at every width (0 failures), no console/network errors besides favicon. Keyboard: 24 tab stops per page at 1440 and 390, all with visible focus, honeypot never focused. Hover contrast on 14 links per page: no failures. Form: 3 required fields, empty and bad-email rejected, valid accepted, honeypot tabindex -1 and aria-hidden, hidden `lang` correct on both pages. Language switch works both ways. No animations with reduced motion. EN text has no Spanish stopwords. External links: Umbral, Morgado, Journaling, MAGI return 200 with target/rel set.
+- BLOCKER for deploy: `https://elizabeth-landing.vercel.app/` returns 404 `DEPLOYMENT_NOT_FOUND` from Vercel (the deployment does not exist at that URL). The case card links to it. Needs the correct URL or removal of the link before T8. Awaiting user.
+- Note: the WhatsApp links open in the same tab (no `target="_blank"`); left as is, decision for user (optional).
+- Still NOT verified: form submit (T5), other browsers/devices, Lighthouse. Known and open: ES|EN switch link under 24px height (T7), favicon (T6).
+
 ## Next step
 T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
