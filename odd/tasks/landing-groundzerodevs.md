@@ -42,6 +42,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [ ] T9 Replace placeholder case images with real screenshots (blocked: user delivers the 4 captures).
 
 ## Open items (user)
+- Cloudflare Web Analytics token (deferred by user 2026-09-30): set `PUBLIC_CF_BEACON_TOKEN` at build time before T8 deploy, then confirm the event (see `docs/analytics.md`). Until then the site builds without analytics.
 - Written OK from clients for the portfolio cases.
 - 4 case screenshots per spec above.
 
