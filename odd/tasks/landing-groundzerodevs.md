@@ -34,7 +34,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [x] T1 Scaffold Astro project, i18n routing (`/` ES, `/en/` EN), design tokens (colors, fonts), base layout. Check: `astro build` passes.
 - [x] T2 Hero (ES) with blueprint details: grid, axes, origin 0,0, pillars, Santiago coordinate (33.4489° S · 70.6693° W). Check: visual match with approved C.
 - [x] T3 Remaining ES sections: pillars, cases (placeholder images), sustain counters, process, contact block, footer. Check: build + copy matches `landing-decisions`.
-- [ ] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
+- [x] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
 - [ ] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
 - [ ] T6 SEO and analytics: meta, hreflang, sitemap, OG image, cookieless analytics. Check: hreflang valid, analytics event seen.
 - [ ] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review.
@@ -60,5 +60,10 @@ Plan created 2026-09-30.
 - Open for T7: (a) `EN` nav link is 19–21px tall, under the 24px WCAG 2.2 target size (enlarge hit area); inline email and MAGI links are 21px (inline text links are exempt, optional); (b) mobile nav wraps to a second row, no menu; (c) decide max content width for very wide screens (full-bleed at 1920); (d) contrast only tested at 1440.
 - Open for T6: favicon.
 
+- T4 done via delegated writer (trigger: 2+ non-trivial files). Commits a42d5cc (typed i18n dictionaries `src/i18n/{types,index,es,en}.ts`, ES output kept equivalent) and 2664ed2 (EN page + language switch). Refactor was 570 insertions / 157 deletions, over the 400-line heuristic. EN section ids: services, work, sustain, process, contact (ES ids unchanged). Hidden `lang` input added to the form on both languages so the T5 handler can answer in the right language (the only ES output change). D had no title/meta description: translated from ES (note for user review). Screen-reader strings and honeypot label are translations, not from D.
+- T4 parent verification (Playwright + Brave): build OK (2 pages); `/` and `/en/` at 320/390/768/1440/1920 have no horizontal overflow, all nav anchors resolve, correct `lang`, correct `aria-current` language, 5 h2 each, no `jmartinez@`; no failing requests besides known favicon; `/en/` 1440 full-page screenshot inspected, sections and copy consistent with D. Writer also reported: ES/EN parity (6 sections, 11 h3, 20 links, 4 counters, same 5 form fields), contrast AA no failures on 111 text nodes at 1440 and 390, Spanish-word scan hits all legitimate. NOT verified: hover states on EN, form submit (T5), external links loading, other browsers, Lighthouse, pixel comparison against D.
+- Open for T6: hreflang alternates (links currently carry `hreflang` attributes only in the language switch), sitemap, OG, favicon.
+- Open for T7: language-switch link (`ES`/`EN`) height under 24px, mobile nav, max width at 1920.
+
 ## Next step
-T4: EN version at `/en/` from the approved D copy.
+T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
