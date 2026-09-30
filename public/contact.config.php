@@ -25,6 +25,7 @@ return array(
     'throttle_interval' => 30,
     'throttle_per_hour' => 10,
 
-    // Extra hostnames (besides the request host) accepted in Origin/Referer, e.g. 'www.groundzerodevs.com'.
+    // Extra hostnames (besides the request host) accepted in Origin/Referer. Leave empty in production:
+    // the browser posts from the same host that serves the page, and .htaccess redirects www to the apex.
     'allowed_hosts' => array(),
 );

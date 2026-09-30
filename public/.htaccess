@@ -1,6 +1,35 @@
-# Contact form: never serve configuration, local overrides or private data over HTTP.
-# Works on Apache 2.4 (Require) and 2.2 (Order/Deny). T8 will add HTTPS redirect and caching here.
-<FilesMatch "^(contact\.config\.php|contact\.local\.php)$">
+# groundzerodevs.com - Apache rules for HostGator shared hosting (uploaded with dist/).
+# Every block is wrapped in <IfModule> so a missing module disables that block instead of
+# returning a 500. Works on Apache 2.4 (Require) and 2.2 (Order/Deny).
+
+# --- Canonical URL: HTTPS + apex, one 301 hop ---------------------------------------------
+# Both rules only touch groundzerodevs.com and www.groundzerodevs.com, so a subdomain whose
+# folder lives under public_html (e.g. umbral.) is never redirected to the apex.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http://(www.)host/x -> https://groundzerodevs.com/x. The X-Forwarded-Proto check stops a
+  # redirect loop if the site is ever placed behind a TLS-terminating proxy or CDN.
+  RewriteCond %{HTTP_HOST} ^(www\.)?groundzerodevs\.com(:[0-9]+)?$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+  # Certificate validation (cPanel AutoSSL / ACME) must stay reachable over plain HTTP.
+  RewriteCond %{REQUEST_URI} !^/\.well-known/(cpanel-dcv|pki-validation|acme-challenge)/ [NC]
+  RewriteRule ^(.*)$ https://groundzerodevs.com/$1 [R=301,L]
+
+  # https://www.groundzerodevs.com/x -> https://groundzerodevs.com/x
+  RewriteCond %{HTTP_HOST} ^www\.groundzerodevs\.com(:[0-9]+)?$ [NC]
+  RewriteRule ^(.*)$ https://groundzerodevs.com/$1 [R=301,L]
+
+  # Mark hashed build assets (_astro/*) so they get the long cache below.
+  RewriteRule ^_astro/ - [E=GZD_IMMUTABLE:1]
+</IfModule>
+
+# --- Never serve configuration, overrides, dotfiles or private data over HTTP -------------
+# FilesMatch tests the resolved file name, so /contact.config.php/anything (path info) and
+# upper-case variants are covered; the prefix match also blocks backups such as
+# contact.config.php.bak or contact.local.php~.
+<FilesMatch "(?i)^(contact\.(config|local)\.php.*|\..*|.*\.(md|log|bak|orig|swp|sql|ini)|.*~)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
@@ -10,3 +39,41 @@
   </IfModule>
 </FilesMatch>
 
+# Never list directory contents.
+Options -Indexes
+
+# --- Compression --------------------------------------------------------------------------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml application/xml application/javascript text/javascript application/json image/svg+xml image/x-icon
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript text/javascript application/json image/svg+xml image/x-icon
+</IfModule>
+
+# --- Caching and security headers ---------------------------------------------------------
+<IfModule mod_headers.c>
+  # HTML, sitemap, robots: always revalidate (cheap 304 thanks to ETag) so a new upload shows at once.
+  <FilesMatch "(?i)\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Icons and social image keep stable names: one day.
+  <FilesMatch "(?i)\.(ico|svg|png)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  # Hashed build assets never change under the same name.
+  Header set Cache-Control "public, max-age=31536000, immutable" env=GZD_IMMUTABLE
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always unset X-Powered-By
+
+  # HSTS is deliberately left off until HTTPS is confirmed stable on every host that shares
+  # this domain; it is hard to undo once browsers cache it. See docs/deploy.md.
+  # Header always set Strict-Transport-Security "max-age=31536000"
+
+  # No Content-Security-Policy on purpose: it would have to allow fonts.googleapis.com (CSS),
+  # fonts.gstatic.com (font files), the inline styles/scripts Astro emits and, when enabled,
+  # static.cloudflareinsights.com + cloudflareinsights.com. Not verifiable without the live host.
+</IfModule>
