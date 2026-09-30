@@ -10,6 +10,7 @@
     "test:contact": "node --test tests/contact.test.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.5"
   }
 }
