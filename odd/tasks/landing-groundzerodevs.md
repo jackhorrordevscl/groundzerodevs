@@ -89,6 +89,8 @@ Plan created 2026-09-30.
 
 - T8 user-observed in production after re-upload of commit 8b722da: the form submitted from `/` (ES) and `/en/` (EN) delivers both messages to contacto@ (user report; inbox vs spam and SPF/DKIM/DMARC results not reported yet).
 
+- T8 mail authentication (user-supplied original of a Roundcube reply from contacto@ to Gmail, 2026-09-30): Gmail Authentication-Results `spf=pass` (client-ip 35.89.44.38) and `dmarc=pass (p=NONE)`, delivered to inbox. NO `dkim=` result and no `DKIM-Signature` header: DMARC passes through SPF alignment only. DNS has SPF `v=spf1 a mx include:websitewelcome.com ~all`, DMARC `p=none`, and a DKIM key at selector `default`, so the record is published but outgoing mail is apparently not signed (not verified for form mail sent by PHP `mail()`; the form message to contacto@ was delivered locally, inbox). Follow-up (non-blocking): in cPanel Email Deliverability check that DKIM is enabled for signing/valid; then re-test with a message to Gmail and expect `dkim=pass`. Tighten DMARC only after DKIM passes.
+
 ## Next step (updated)
 Finish T8: real form test in ES and EN (message in contacto@, not spam), SPF/DKIM/DMARC per `docs/email-setup.md`, delete the temporary FTP account `gentle@`. Then T9 and the deferred Cloudflare token.
 
