@@ -35,7 +35,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [x] T2 Hero (ES) with blueprint details: grid, axes, origin 0,0, pillars, Santiago coordinate (33.4489° S · 70.6693° W). Check: visual match with approved C.
 - [x] T3 Remaining ES sections: pillars, cases (placeholder images), sustain counters, process, contact block, footer. Check: build + copy matches `landing-decisions`.
 - [x] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
-- [ ] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
+- [x] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
 - [ ] T6 SEO and analytics: meta, hreflang, sitemap, OG image, cookieless analytics. Check: hreflang valid, analytics event seen.
 - [ ] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review.
 - [ ] T8 Deploy to HostGator: `.htaccess` (HTTPS, caching), upload `dist/`, verify live. Check: both languages and form work on the real domain.
@@ -70,5 +70,13 @@ Plan created 2026-09-30.
 - Note: the WhatsApp links open in the same tab (no `target="_blank"`); left as is, decision for user (optional).
 - Still NOT verified: form submit (T5), other browsers/devices, Lighthouse. Known and open: ES|EN switch link under 24px height (T7), favicon (T6).
 
+- T5 done via delegated writer (trigger: 2+ non-trivial files). User confirmed contacto@groundzerodevs.com is a working cPanel mailbox. Decision: PHP `mail()` (From/To contacto@, `-f` envelope, Reply-To visitor), no SMTP credentials in the repo; SMTP is the fallback if messages land in spam. Commits 19f2842 (handler, config, .htaccess, docs/email-setup.md, tests/contact.test.mjs) and 0bb9317 (front-end status + fetch enhancement); parent hardening: the Reply-To display name is always RFC 2047 encoded (found in code review: names like `Doe, John <x@y>` were emitted as address syntax) with a new test. Handler: POST only, same-origin check, honeypot `website`, validation (name 2–100, email ≤254, message 10–5000), CR/LF neutralized, per-IP throttle (1/30 s, 10/hour) in `sys_get_temp_dir()/groundzerodevs-contact`, PRG redirects (`/?sent=1#contacto`, `/en/?error=<code>#contact`) or JSON.
+- T5 parent verification: portable PHP 7.4.33 and 8.4.26 in scratchpad (not installed system-wide, not in repo). `php -l` OK on both; `npm run test:contact` 14/14 on both (transport `file`, no real mail). End-to-end in Brave/Playwright against `php -S` serving `dist/` with `contact.local.php` transport `file`: ES and EN JS submit → 200, success message localized and focused, form cleared, no navigation; server-side invalid input → localized error, form kept; both valid messages in outbox, invalid one not delivered. Agent also ran redirect flow and JS-disabled post, and layout/contrast recheck at 390/1440.
+- T5 NOT verified (needs T8): real `mail()` delivery on HostGator and inbox vs spam, SPF/DKIM/DMARC, `.htaccess` deny rules (`/contact.config.php` and `/contact.local.php` must return 403), PHP version on the host. Known limitation: with JavaScript disabled the redirect works but no message is shown.
+- Open for T8: decide `allowed_hosts` for `www.groundzerodevs.com` (empty by default; prefer redirecting www to the apex in `.htaccess`); after deploy send a real test from the form both languages and follow `docs/email-setup.md`. Stale comment in Contact.astro fixed.
+
 ## Next step
+T6: SEO and analytics (hreflang alternates, sitemap, OG image, favicon, cookieless analytics). Then T7 (a11y/perf), T8 (deploy), T9 (screenshots). Before T6 a user choice is needed on analytics (see below).
+
+## Previous next step
 T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
