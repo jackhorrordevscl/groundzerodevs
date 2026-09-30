@@ -136,5 +136,12 @@ export const es: Dictionary = {
     message: '¿Qué necesitas?',
     honeypot: 'No completes este campo',
     submit: 'Enviar mensaje',
+    status: {
+      sending: 'Enviando tu mensaje…',
+      sent: 'Gracias, recibimos tu mensaje. Te responderemos en horario hábil.',
+      invalid: 'Revisa los datos: necesitamos tu nombre, un correo válido y un mensaje de al menos 10 caracteres.',
+      limit: 'Enviaste varios mensajes seguidos. Espera un momento e inténtalo de nuevo, o escríbenos por WhatsApp.',
+      send: 'No pudimos enviar tu mensaje. Inténtalo otra vez o escríbenos por WhatsApp o a contacto@groundzerodevs.com.',
+    },
   },
 };

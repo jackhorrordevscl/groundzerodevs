@@ -137,5 +137,12 @@ export const en: Dictionary = {
     message: 'What do you need?',
     honeypot: 'Do not fill in this field',
     submit: 'Send message',
+    status: {
+      sending: 'Sending your message…',
+      sent: 'Thanks, we got your message. We will reply during business hours.',
+      invalid: 'Please check your details: we need your name, a valid email and a message of at least 10 characters.',
+      limit: 'You sent several messages in a row. Please wait a moment and try again, or message us on WhatsApp.',
+      send: 'We could not send your message. Please try again, or reach us on WhatsApp or at contacto@groundzerodevs.com.',
+    },
   },
 };

@@ -56,5 +56,7 @@ export interface Dictionary {
     message: string;
     honeypot: string;
     submit: string;
+    // Form result messages; the inline script reads them from data attributes.
+    status: { sending: string; sent: string; invalid: string; limit: string; send: string };
   };
 }
