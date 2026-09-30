@@ -102,11 +102,22 @@ const t = getDictionary(lang);
       if (button) button.disabled = true;
       show('sending', 'pending', false);
       try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json', 'X-Requested-With': 'fetch' },
-        });
+        const post = () =>
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json', 'X-Requested-With': 'fetch' },
+          });
+        let response = await post();
+        // The host's bot protection answers a first POST with 409 and a tiny script that sets a
+        // `humans_<id>=1` cookie. fetch() never runs it, so set the same cookie and retry once.
+        if (response.status === 409) {
+          const challenge = (await response.text()).match(/\b(humans_\d+)=1\b/);
+          if (challenge) {
+            document.cookie = `${challenge[1]}=1; path=/; SameSite=Lax`;
+            response = await post();
+          }
+        }
         const result = await response.json();
         if (result && result.ok === true) {
           form.reset();
