@@ -1,0 +1,156 @@
+---
+// Contact block: WhatsApp, email and the message form.
+// The form posts to /contact.php; the PHP handler (validation, honeypot check, delivery) is task T5.
+---
+
+<section id="contacto" class="section contact" aria-labelledby="contacto-title">
+  <div class="intro">
+    <p class="section-label">05 — CONTACTO</p>
+    <h2 id="contacto-title">¿Tienes algo en mente? Partamos en cero.</h2>
+    <p class="hours">Respondemos en horario hábil, hora de Chile.</p>
+    <a class="wa" href="https://wa.me/56956039666">WhatsApp · +56 9 5603 9666</a>
+    <a class="mail" href="mailto:contacto@groundzerodevs.com">contacto@groundzerodevs.com</a>
+  </div>
+
+  <form class="form" method="post" action="/contact.php">
+    <label>
+      Nombre
+      <input type="text" name="name" autocomplete="name" required />
+    </label>
+    <label>
+      Correo
+      <input type="email" name="email" autocomplete="email" required />
+    </label>
+    <label>
+      ¿Qué necesitas?
+      <textarea name="message" rows="4" required></textarea>
+    </label>
+    <!-- Honeypot: off-screen and hidden from assistive tech; humans never fill it, bots usually do. -->
+    <div class="hp" aria-hidden="true">
+      <label>
+        No completes este campo
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+    <button type="submit">Enviar mensaje</button>
+  </form>
+</section>
+
+<style>
+  .contact {
+    padding-block: var(--space-9);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.625rem;
+    min-width: 0;
+  }
+  .section-label {
+    color: var(--color-ink-subtle);
+  }
+  h2 {
+    font-size: clamp(2.5rem, 5.3vw, var(--text-5xl));
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    overflow-wrap: break-word;
+  }
+  .hours {
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+  .wa {
+    align-self: flex-start;
+    background: var(--color-amber);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.125rem;
+    padding: 1.125rem 1.875rem;
+  }
+  .wa:hover {
+    background: var(--color-charcoal);
+    color: var(--color-amber);
+  }
+  .mail {
+    align-self: flex-start;
+    font-size: var(--text-md);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 45rem;
+    background: var(--color-white);
+    border: 2px solid var(--color-charcoal);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--color-line);
+    border-radius: 0;
+    padding: 0 0.875rem;
+    font-size: var(--text-base);
+    font-weight: 400;
+    background: var(--color-white);
+    color: var(--color-charcoal);
+  }
+  input {
+    height: 3rem;
+  }
+  textarea {
+    padding-block: var(--space-3);
+    min-height: 5.5rem;
+    resize: vertical;
+  }
+  button {
+    align-self: flex-start;
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    border: 0;
+    border-radius: 0;
+    padding: 0.875rem 1.75rem;
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover {
+    background: var(--color-ink-muted);
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 40rem) {
+    .form {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .contact {
+      grid-template-columns: minmax(0, 35rem) minmax(0, 1fr);
+      gap: 4.5rem;
+    }
+  }
+</style>

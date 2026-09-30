@@ -1,0 +1,91 @@
+---
+// Site footer for the ES page. No cookie banner: analytics will be cookieless.
+---
+
+<footer class="site-footer">
+  <a class="brand" href="/" aria-label="groundzerodevs, inicio">
+    <span class="brand-mark" aria-hidden="true">0,0</span>
+    <span class="brand-name">groundzerodevs</span>
+  </a>
+  <p class="muted">Chile · LATAM</p>
+  <a class="muted mail" href="mailto:contacto@groundzerodevs.com">contacto@groundzerodevs.com</a>
+  <p class="lang">
+    <b aria-current="true"><span class="sr-only">Español, </span>ES</b>
+    <span aria-hidden="true"> | </span>
+    <a href="/en/" lang="en" hreflang="en">EN</a>
+  </p>
+  <p class="muted">© 2026 groundzerodevs</p>
+</footer>
+
+<style>
+  .site-footer {
+    padding: var(--space-8) var(--space-5);
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4) var(--space-6);
+    font-size: 0.875rem;
+  }
+  .site-footer a {
+    color: var(--color-bone);
+  }
+  .site-footer a:hover {
+    color: var(--color-amber);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+  }
+  .brand-mark {
+    width: 1.875rem;
+    height: 1.875rem;
+    background: var(--color-amber);
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 800;
+  }
+  .muted,
+  .site-footer a.muted {
+    color: var(--color-on-dark-muted);
+  }
+  .mail {
+    overflow-wrap: anywhere;
+  }
+  .lang b {
+    color: var(--color-amber);
+  }
+  .lang a {
+    text-decoration: none;
+  }
+  .site-footer a.muted:hover {
+    color: var(--color-amber);
+  }
+
+  @media (min-width: 40rem) {
+    .site-footer {
+      padding-inline: var(--gutter);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-footer {
+      flex-wrap: nowrap;
+      min-height: 10rem;
+      padding-block: 0;
+    }
+  }
+</style>
