@@ -21,6 +21,11 @@
   RewriteCond %{HTTP_HOST} ^www\.groundzerodevs\.com(:[0-9]+)?$ [NC]
   RewriteRule ^(.*)$ https://groundzerodevs.com/$1 [R=301,L]
 
+  # Legacy page from the previous site (/about, still indexed in Search Console) -> home.
+  # Host-scoped so a subdomain folder under public_html keeps its own /about.
+  RewriteCond %{HTTP_HOST} ^groundzerodevs\.com(:[0-9]+)?$ [NC]
+  RewriteRule ^about/?$ https://groundzerodevs.com/ [R=301,L]
+
   # Mark hashed build assets (_astro/*) so they get the long cache below.
   RewriteRule ^_astro/ - [E=GZD_IMMUTABLE:1]
 </IfModule>
