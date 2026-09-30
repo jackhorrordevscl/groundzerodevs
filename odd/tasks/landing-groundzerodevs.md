@@ -30,8 +30,8 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - Route per task is recorded under Progress once executed.
 
 ## Tasks
-- [ ] T0 Initialize git repo in the project root and create feature branch (needs user OK: folder is not a repo yet).
-- [ ] T1 Scaffold Astro project, i18n routing (`/` ES, `/en/` EN), design tokens (colors, fonts), base layout. Check: `astro build` passes.
+- [x] T0 Initialize git repo in the project root and create feature branch (user authorized 2026-09-30). Evidence: branch `feat/landing`, remote `origin` = github.com/jackhorrordevscl/groundzerodevs (empty repo, nothing pushed); commits 015863d, 0150c8d.
+- [x] T1 Scaffold Astro project, i18n routing (`/` ES, `/en/` EN), design tokens (colors, fonts), base layout. Check: `astro build` passes.
 - [ ] T2 Hero (ES) with blueprint details: grid, axes, origin 0,0, pillars, Santiago coordinate (33.4489° S · 70.6693° W). Check: visual match with approved C.
 - [ ] T3 Remaining ES sections: pillars, cases (placeholder images), sustain counters, process, contact block, footer. Check: build + copy matches `landing-decisions`.
 - [ ] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
@@ -46,7 +46,10 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - 4 case screenshots per spec above.
 
 ## Progress
-Plan created 2026-09-30. No code written yet.
+Plan created 2026-09-30.
+- T0 done inline (git init, branch, remote, docs commits).
+- T1 done via delegated writer (trigger: 2+ non-trivial files). Commit 717ab1c. Checks observed: `npm run build` OK, 2 pages; `dist/index.html` lang="es", `dist/en/index.html` lang="en"; parent re-ran the build. Astro ^7.3.5. Design values reused from C-Editorial; green #2ea36b is a writer choice (design has none). Bricolage 500 is not loaded (spec says 700/800).
+- Untracked `.atl/` (tooling output) left out of commits.
 
 ## Next step
-T0 (confirm git init), then T1.
+T2: hero (ES) with blueprint details.
