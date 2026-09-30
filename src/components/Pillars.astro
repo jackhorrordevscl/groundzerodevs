@@ -1,0 +1,136 @@
+---
+// Services section: three pillars (Build / Presence / Sustain). AI is a note inside each pillar, not a pillar.
+const pillars = [
+  {
+    number: '01',
+    name: 'Construir',
+    text: 'Software que resuelve un problema real. IA: agentes y chatbots integrados a tus sistemas.',
+    items: ['Software a medida', 'Automatización e integraciones', 'MVP y prototipado'],
+  },
+  {
+    number: '02',
+    name: 'Presencia',
+    text: 'Que te encuentren y te recuerden. IA: apoyo en contenido y análisis de métricas.',
+    items: ['Community management', 'Diseño y desarrollo web', 'SEO y analítica'],
+  },
+  {
+    number: '03',
+    name: 'Sostener',
+    text: 'Lo que construimos, funcionando. IA: triage de tickets y base de conocimiento asistida.',
+    items: ['Soporte a usuarios', 'Mantenimiento y SLA', 'Asesoría tecnológica'],
+  },
+];
+---
+
+<section id="servicios" class="section pillars" aria-labelledby="servicios-title">
+  <header class="head">
+    <p class="section-label">01 — SERVICIOS</p>
+    <h2 id="servicios-title">Tres pilares. Un solo equipo.</h2>
+  </header>
+  <ol class="list">
+    {
+      pillars.map((p) => (
+        <li class="row">
+          <span class="number" aria-hidden="true">
+            {p.number}
+          </span>
+          <div class="body">
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+          </div>
+          <ul class="items">
+            {p.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .pillars {
+    padding-block: var(--space-9) var(--space-8);
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .section-label {
+    color: var(--color-amber);
+  }
+  h2 {
+    font-size: clamp(2.25rem, 6vw, var(--text-4xl));
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px dashed var(--color-dark-line);
+  }
+  .row {
+    border-top: 1px dashed var(--color-dark-line);
+    padding-block: var(--space-6);
+    display: grid;
+    gap: var(--space-4) var(--space-6);
+    align-items: center;
+  }
+  .number {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 8vw, 6.875rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-amber);
+  }
+  h3 {
+    font-size: clamp(2rem, 4vw, var(--text-3xl));
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .body p {
+    margin-top: var(--space-2);
+    font-size: var(--text-md);
+    line-height: 1.5;
+    color: var(--color-on-dark-muted);
+  }
+  .items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 1.9;
+  }
+
+  @media (min-width: 48rem) {
+    .row {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .items {
+      grid-column: 2;
+    }
+  }
+
+  /* Design: number 170px, text 400px, service list right-aligned in the remaining space. */
+  @media (min-width: 64rem) {
+    .row {
+      grid-template-columns: 10.625rem 25rem minmax(0, 1fr);
+      gap: var(--space-7);
+      min-height: 12.5rem;
+      padding-block: var(--space-5);
+    }
+    .items {
+      grid-column: auto;
+      text-align: right;
+    }
+  }
+</style>
