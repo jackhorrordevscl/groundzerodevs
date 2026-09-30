@@ -77,7 +77,7 @@ textarea {
 
 @media (min-width: 40rem) {
   .section {
-    padding-inline: var(--gutter);
+    padding-inline: var(--pad-x);
   }
 }
 

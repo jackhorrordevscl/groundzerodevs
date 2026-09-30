@@ -55,4 +55,7 @@
   /* Layout */
   --gutter: 4rem; /* 64px page padding in the desktop design */
   --container-max: 90rem; /* 1440px design width */
+  /* Side padding: the gutter up to the design width, then grows so content stays centered at container-max.
+     Backgrounds stay full-bleed. The % resolves against the element's own containing block (full width). */
+  --pad-x: max(var(--gutter), calc((100% - var(--container-max)) / 2 + var(--gutter)));
 }
