@@ -1,7 +1,7 @@
 // Language-neutral case data. Copy (names, blurbs, tags) lives in the i18n dictionaries.
-// Screenshots are 1440x900 WebP captures of the public home pages in `public/cases/`; Umbral is
-// still pending (task T9) and shows the placeholder. To add or swap one, drop the WebP there and
-// set `image` here; nothing else changes.
+// Screenshots are 1440x900 WebP captures of the public home pages in `public/cases/` (Umbral: its
+// public landing only, never the app). To swap one, drop the WebP there and set `image` here;
+// nothing else changes. `null` falls back to a neutral placeholder.
 
 export type CaseId = 'umbral' | 'morgado' | 'journaling' | 'elizabeth';
 
@@ -12,7 +12,7 @@ export interface CaseMedia {
 }
 
 export const caseMedia: Record<CaseId, CaseMedia> = {
-  umbral: { url: 'https://umbral.groundzerodevs.com', host: 'umbral.groundzerodevs.com', image: null },
+  umbral: { url: 'https://umbral.groundzerodevs.com', host: 'umbral.groundzerodevs.com', image: '/cases/umbral.webp' },
   morgado: { url: 'https://morgadoyasociados.cl', host: 'morgadoyasociados.cl', image: '/cases/morgado.webp' },
   journaling: {
     url: 'https://journalingenred.vercel.app',
