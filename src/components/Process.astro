@@ -1,22 +1,25 @@
 ---
-// Process section: four steps (Diagnosis, Plan, Build, Operate).
-const steps = [
-  { name: 'Diagnóstico', text: 'Entendemos tu negocio y definimos qué construir primero.' },
-  { name: 'Plan', text: 'Acordamos alcance, plazos y prioridades por escrito.' },
-  { name: 'Construcción', text: 'Entregas cortas y visibles, con pruebas.' },
-  { name: 'Operación', text: 'Nos quedamos: monitoreo, soporte y mejora continua.' },
-];
+// Process section: four steps (Discovery, Plan, Build, Operate).
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
-<section id="proceso" class="section process" aria-labelledby="proceso-title">
+<section id={t.ids.process} class="section process" aria-labelledby={`${t.ids.process}-title`}>
   <header class="head">
-    <p class="section-label">04 — PROCESO</p>
-    <h2 id="proceso-title">Cómo trabajamos</h2>
+    <p class="section-label">{t.process.label}</p>
+    <h2 id={`${t.ids.process}-title`}>{t.process.title}</h2>
   </header>
 
   <ol class="steps">
     {
-      steps.map((s, i) => (
+      t.process.steps.map((s, i) => (
         <li class="step">
           <span class="number" aria-hidden="true">
             {i + 1}

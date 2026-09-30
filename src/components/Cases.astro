@@ -1,75 +1,44 @@
 ---
+// Case cards. Copy comes from the dictionary; URLs, hosts and images are shared (src/data/cases.ts).
 import CaseThumb from './CaseThumb.astro';
-import { caseMedia, magiHost, magiUrl } from '../data/cases';
-import type { CaseId } from '../data/cases';
+import { caseMedia, caseOrder, featuredCase, magiHost, magiUrl } from '../data/cases';
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
 
-interface CaseCopy {
-  id: CaseId;
-  kind: string;
-  status: string;
-  featured?: boolean;
-  name: string;
-  text: string;
+interface Props {
+  lang: Lang;
 }
 
-const cases: CaseCopy[] = [
-  {
-    id: 'umbral',
-    kind: 'PRODUCTO PROPIO · CONSTRUIR',
-    status: 'ACCESO ANTICIPADO',
-    featured: true,
-    name: 'Umbral',
-    text: 'Fichas clínicas para psicólogos independientes en Chile. Cifrado, auditoría y normativa chilena.',
-  },
-  {
-    id: 'morgado',
-    kind: 'CLIENTE · PRESENCIA',
-    status: 'EN PRODUCCIÓN',
-    name: 'Morgado, Cía. & Asociados',
-    text: 'Sitio corporativo de un estudio jurídico en Santiago, más la gestión de su Instagram.',
-  },
-  {
-    id: 'journaling',
-    kind: 'CLIENTE · PRESENCIA',
-    status: 'EN PRODUCCIÓN',
-    name: 'Journaling En Red',
-    text: 'Sitio de un servicio de acompañamiento psicosocial en Santiago.',
-  },
-  {
-    id: 'elizabeth',
-    kind: 'CLIENTE · PRESENCIA',
-    status: 'EN PRODUCCIÓN',
-    name: 'Elizabeth Maureira, Abogada',
-    text: 'Sitio profesional de una abogada en Providencia, Santiago.',
-  },
-];
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
-<section id="casos" class="section cases" aria-labelledby="casos-title">
+<section id={t.ids.work} class="section cases" aria-labelledby={`${t.ids.work}-title`}>
   <header class="head">
-    <p class="section-label">02 — CASOS</p>
-    <h2 id="casos-title">
-      Construimos productos propios. Sabemos lo que cuesta llevarlos a producción.
+    <p class="section-label">{t.cases.label}</p>
+    <h2 id={`${t.ids.work}-title`}>
+      {t.cases.title}
     </h2>
   </header>
 
   <ul class="grid">
     {
-      cases.map((c) => {
-        const media = caseMedia[c.id];
+      caseOrder.map((id) => {
+        const c = t.cases.items[id];
+        const media = caseMedia[id];
         return (
           <li class="card">
-            <CaseThumb name={c.name} src={media.image} />
+            <CaseThumb lang={lang} name={c.name} src={media.image} />
             <div class="content">
               <div class="meta">
                 <span class="kind">{c.kind}</span>
-                <span class:list={['status', { early: c.featured }]}>{c.status}</span>
+                <span class:list={['status', { early: id === featuredCase }]}>{c.status}</span>
               </div>
               <h3>{c.name}</h3>
               <p>{c.text}</p>
               <a href={media.url} target="_blank" rel="noopener noreferrer">
                 {media.host} <span aria-hidden="true">↗</span>
-                <span class="sr-only">(se abre en una pestaña nueva)</span>
+                <span class="sr-only">{t.common.newTab}</span>
               </a>
             </div>
           </li>
@@ -78,15 +47,14 @@ const cases: CaseCopy[] = [
     }
   </ul>
 
-  <aside class="lab" aria-label="Laboratorio">
-    <p class="lab-label">LABORATORIO · I+D</p>
+  <aside class="lab" aria-label={t.cases.lab.ariaLabel}>
+    <p class="lab-label">{t.cases.lab.label}</p>
     <p class="lab-text">
-      <b>MAGI</b> — investigación propia: una compuerta multi-agente que autoriza o bloquea acciones de
-      agentes de código antes de ejecutarse.
+      <b>MAGI</b> {t.cases.lab.text}
     </p>
     <a href={magiUrl} target="_blank" rel="noopener noreferrer">
       {magiHost} <span aria-hidden="true">↗</span>
-      <span class="sr-only">(se abre en una pestaña nueva)</span>
+      <span class="sr-only">{t.common.newTab}</span>
     </a>
   </aside>
 </section>

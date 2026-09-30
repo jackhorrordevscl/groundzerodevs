@@ -1,24 +1,47 @@
 ---
-// Site header for the ES page. Nav anchors point to sections added in T3.
+// Site header. Copy comes from the dictionary for `lang`; nav anchors match the section ids on that page.
+import { getDictionary, languages } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
 <header class="site-header">
-  <a class="brand" href="/" aria-label="groundzerodevs, inicio">
+  <a class="brand" href={t.common.homeHref} aria-label={t.common.homeLabel}>
     <span class="brand-mark" aria-hidden="true">0,0</span>
     <span class="brand-name">groundzerodevs</span>
   </a>
-  <nav class="nav" aria-label="Principal">
-    <a href="#servicios">Servicios</a>
-    <a href="#casos">Casos</a>
-    <a href="#sostener">Sostener</a>
-    <a href="#proceso">Proceso</a>
-    <a href="#contacto">Contacto</a>
+  <nav class="nav" aria-label={t.header.navLabel}>
+    <a href={`#${t.ids.services}`}>{t.header.nav.services}</a>
+    <a href={`#${t.ids.work}`}>{t.header.nav.work}</a>
+    <a href={`#${t.ids.sustain}`}>{t.header.nav.sustain}</a>
+    <a href={`#${t.ids.process}`}>{t.header.nav.process}</a>
+    <a href={`#${t.ids.contact}`}>{t.header.nav.contact}</a>
   </nav>
   <div class="tools">
     <span class="lang">
-      <b aria-current="true"><span class="sr-only">Español, </span>ES</b>
-      <span aria-hidden="true"> | </span>
-      <a href="/en/" lang="en" hreflang="en">EN</a>
+      {
+        languages.map((l, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> | </span>}
+            {l.code === lang ? (
+              <b aria-current="true">
+                <span class="sr-only">{l.name}, </span>
+                {l.label}
+              </b>
+            ) : (
+              <a href={l.href} lang={l.code} hreflang={l.code}>
+                {l.label}
+              </a>
+            )}
+          </>
+        ))
+      }
     </span>
     <a class="wa" href="https://wa.me/56956039666">WhatsApp</a>
   </div>

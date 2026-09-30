@@ -1,23 +1,26 @@
 ---
 // Sustain section with counters. Cutoff 29 Sep 2026. Medians are per project; never a global average,
 // and no per-issue detail for any project.
-const counters = [
-  { value: '204', label: 'incidencias resueltas' },
-  { value: '~3 h', label: 'mediana de resolución · Umbral' },
-  { value: '~19 h', label: 'mediana de resolución · Morgado' },
-  { value: '4', label: 'proyectos en mantenimiento', extra: '+2 en desarrollo' },
-];
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
-<section id="sostener" class="section sustain" aria-labelledby="sostener-title">
+<section id={t.ids.sustain} class="section sustain" aria-labelledby={`${t.ids.sustain}-title`}>
   <header class="head">
-    <p class="section-label">03 — SOSTENER</p>
-    <h2 id="sostener-title">Construir es la mitad. La otra mitad es sostenerlo.</h2>
+    <p class="section-label">{t.sustain.label}</p>
+    <h2 id={`${t.ids.sustain}-title`}>{t.sustain.title}</h2>
   </header>
 
   <ul class="counters">
     {
-      counters.map((c) => (
+      t.sustain.counters.map((c) => (
         <li class="counter">
           <p class="value">{c.value}</p>
           <p class="label">{c.label}</p>
@@ -28,9 +31,7 @@ const counters = [
   </ul>
 
   <p class="note">
-    Datos al <time datetime="2026-09-29">29 sep 2026</time> (jul–sep 2026). Incluye correcciones, mejoras y
-    auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la
-    fecha.
+    {t.sustain.note.before}<time datetime="2026-09-29">{t.sustain.note.date}</time>{t.sustain.note.after}
   </p>
 </section>
 

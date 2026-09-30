@@ -8,21 +8,21 @@ import Sustain from '../components/Sustain.astro';
 import Process from '../components/Process.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { getDictionary } from '../i18n';
+
+const lang = 'es';
+const t = getDictionary(lang);
 ---
 
-<BaseLayout
-  lang="es"
-  title="groundzerodevs · Software, presencia digital y soporte"
-  description="Construimos lo que tu negocio necesita y lo mantenemos en pie. Software, presencia digital y soporte continuo para pymes y startups en Chile y LATAM."
->
-  <Header />
+<BaseLayout lang={lang} title={t.meta.title} description={t.meta.description}>
+  <Header lang={lang} />
   <main>
-    <Hero />
-    <Pillars />
-    <Cases />
-    <Sustain />
-    <Process />
-    <Contact />
+    <Hero lang={lang} />
+    <Pillars lang={lang} />
+    <Cases lang={lang} />
+    <Sustain lang={lang} />
+    <Process lang={lang} />
+    <Contact lang={lang} />
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>

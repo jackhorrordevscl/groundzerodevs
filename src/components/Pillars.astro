@@ -1,35 +1,24 @@
 ---
 // Services section: three pillars (Build / Presence / Sustain). AI is a note inside each pillar, not a pillar.
-const pillars = [
-  {
-    number: '01',
-    name: 'Construir',
-    text: 'Software que resuelve un problema real. IA: agentes y chatbots integrados a tus sistemas.',
-    items: ['Software a medida', 'Automatización e integraciones', 'MVP y prototipado'],
-  },
-  {
-    number: '02',
-    name: 'Presencia',
-    text: 'Que te encuentren y te recuerden. IA: apoyo en contenido y análisis de métricas.',
-    items: ['Community management', 'Diseño y desarrollo web', 'SEO y analítica'],
-  },
-  {
-    number: '03',
-    name: 'Sostener',
-    text: 'Lo que construimos, funcionando. IA: triage de tickets y base de conocimiento asistida.',
-    items: ['Soporte a usuarios', 'Mantenimiento y SLA', 'Asesoría tecnológica'],
-  },
-];
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
-<section id="servicios" class="section pillars" aria-labelledby="servicios-title">
+<section id={t.ids.services} class="section pillars" aria-labelledby={`${t.ids.services}-title`}>
   <header class="head">
-    <p class="section-label">01 — SERVICIOS</p>
-    <h2 id="servicios-title">Tres pilares. Un solo equipo.</h2>
+    <p class="section-label">{t.pillars.label}</p>
+    <h2 id={`${t.ids.services}-title`}>{t.pillars.title}</h2>
   </header>
   <ol class="list">
     {
-      pillars.map((p) => (
+      t.pillars.items.map((p) => (
         <li class="row">
           <span class="number" aria-hidden="true">
             {p.number}

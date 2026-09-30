@@ -1,19 +1,28 @@
 ---
-// ES hero with blueprint details (grid, axes, 0,0 origin, three pillars, Santiago coordinate).
+// Hero with blueprint details (grid, axes, 0,0 origin, three pillars, Santiago coordinate).
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
 <section class="hero" aria-labelledby="hero-title">
   <div class="copy">
-    <p class="eyebrow">CHILE · LATAM — PARA PYMES Y STARTUPS</p>
+    <p class="eyebrow">{t.hero.eyebrow}</p>
     <h1 id="hero-title">
-      Construimos lo que tu negocio necesita. <span class="mark">Y lo mantenemos en pie.</span>
+      {t.hero.title} <span class="mark">{t.hero.titleMark}</span>
     </h1>
     <p class="lead">
-      Software, presencia digital y soporte continuo. Un solo equipo, con IA aplicada en cada etapa.
+      {t.hero.lead}
     </p>
     <div class="actions">
-      <a class="btn btn-primary" href="https://wa.me/56956039666">Hablemos por WhatsApp</a>
-      <a class="btn btn-secondary" href="#casos">Ver casos</a>
+      <a class="btn btn-primary" href="https://wa.me/56956039666">{t.hero.ctaPrimary}</a>
+      <a class="btn btn-secondary" href={`#${t.ids.work}`}>{t.hero.ctaSecondary}</a>
     </div>
   </div>
 
@@ -23,16 +32,16 @@
       <span class="axis axis-y" aria-hidden="true"></span>
       <span class="origin" aria-hidden="true"></span>
       <span class="origin-label" aria-hidden="true">0,0</span>
-      <ul class="pillars" aria-label="Pilares">
-        <li class="pillar pillar-1"><span aria-hidden="true">01 </span>CONSTRUIR</li>
-        <li class="pillar pillar-2"><span aria-hidden="true">02 </span>PRESENCIA</li>
-        <li class="pillar pillar-3"><span aria-hidden="true">03 </span>SOSTENER</li>
+      <ul class="pillars" aria-label={t.hero.pillarsLabel}>
+        <li class="pillar pillar-1"><span aria-hidden="true">01 </span>{t.hero.pillars[0]}</li>
+        <li class="pillar pillar-2"><span aria-hidden="true">02 </span>{t.hero.pillars[1]}</li>
+        <li class="pillar pillar-3"><span aria-hidden="true">03 </span>{t.hero.pillars[2]}</li>
       </ul>
       <span class="tick tick-x" aria-hidden="true">x →</span>
       <span class="tick tick-y" aria-hidden="true">y ↓</span>
       <span class="coord">33.4489° S · 70.6693° W</span>
     </div>
-    <figcaption>Todo sistema empieza en cero. Nosotros lo llevamos a producción.</figcaption>
+    <figcaption>{t.hero.caption}</figcaption>
   </figure>
 </section>
 

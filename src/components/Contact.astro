@@ -1,38 +1,49 @@
 ---
 // Contact block: WhatsApp, email and the message form.
 // The form posts to /contact.php; the PHP handler (validation, honeypot check, delivery) is task T5.
+// The hidden `lang` field tells the handler which language to answer in.
+import { getDictionary } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
-<section id="contacto" class="section contact" aria-labelledby="contacto-title">
+<section id={t.ids.contact} class="section contact" aria-labelledby={`${t.ids.contact}-title`}>
   <div class="intro">
-    <p class="section-label">05 — CONTACTO</p>
-    <h2 id="contacto-title">¿Tienes algo en mente? Partamos en cero.</h2>
-    <p class="hours">Respondemos en horario hábil, hora de Chile.</p>
+    <p class="section-label">{t.contact.label}</p>
+    <h2 id={`${t.ids.contact}-title`}>{t.contact.title}</h2>
+    <p class="hours">{t.contact.hours}</p>
     <a class="wa" href="https://wa.me/56956039666">WhatsApp · +56 9 5603 9666</a>
     <a class="mail" href="mailto:contacto@groundzerodevs.com">contacto@groundzerodevs.com</a>
   </div>
 
   <form class="form" method="post" action="/contact.php">
     <label>
-      Nombre
+      {t.contact.name}
       <input type="text" name="name" autocomplete="name" required />
     </label>
     <label>
-      Correo
+      {t.contact.email}
       <input type="email" name="email" autocomplete="email" required />
     </label>
     <label>
-      ¿Qué necesitas?
+      {t.contact.message}
       <textarea name="message" rows="4" required></textarea>
     </label>
     <!-- Honeypot: off-screen and hidden from assistive tech; humans never fill it, bots usually do. -->
     <div class="hp" aria-hidden="true">
       <label>
-        No completes este campo
+        {t.contact.honeypot}
         <input type="text" name="website" tabindex="-1" autocomplete="off" />
       </label>
     </div>
-    <button type="submit">Enviar mensaje</button>
+    <input type="hidden" name="lang" value={lang} />
+    <button type="submit">{t.contact.submit}</button>
   </form>
 </section>
 

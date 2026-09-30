@@ -1,18 +1,41 @@
 ---
-// Site footer for the ES page. No cookie banner: analytics will be cookieless.
+// Site footer. No cookie banner: analytics will be cookieless.
+import { getDictionary, languages } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDictionary(lang);
 ---
 
 <footer class="site-footer">
-  <a class="brand" href="/" aria-label="groundzerodevs, inicio">
+  <a class="brand" href={t.common.homeHref} aria-label={t.common.homeLabel}>
     <span class="brand-mark" aria-hidden="true">0,0</span>
     <span class="brand-name">groundzerodevs</span>
   </a>
   <p class="muted">Chile · LATAM</p>
   <a class="muted mail" href="mailto:contacto@groundzerodevs.com">contacto@groundzerodevs.com</a>
   <p class="lang">
-    <b aria-current="true"><span class="sr-only">Español, </span>ES</b>
-    <span aria-hidden="true"> | </span>
-    <a href="/en/" lang="en" hreflang="en">EN</a>
+    {
+      languages.map((l, i) => (
+        <>
+          {i > 0 && <span aria-hidden="true"> | </span>}
+          {l.code === lang ? (
+            <b aria-current="true">
+              <span class="sr-only">{l.name}, </span>
+              {l.label}
+            </b>
+          ) : (
+            <a href={l.href} lang={l.code} hreflang={l.code}>
+              {l.label}
+            </a>
+          )}
+        </>
+      ))
+    }
   </p>
   <p class="muted">© 2026 groundzerodevs</p>
 </footer>

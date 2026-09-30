@@ -1,4 +1,4 @@
-// Language-neutral case data. Copy (names, blurbs, tags) lives in the page components.
+// Language-neutral case data. Copy (names, blurbs, tags) lives in the i18n dictionaries.
 // Screenshots are not delivered yet (task T9). To swap a placeholder for a real capture,
 // drop the 1440x900 WebP in `public/cases/` and set `image` here; nothing else changes.
 
@@ -24,6 +24,10 @@ export const caseMedia: Record<CaseId, CaseMedia> = {
     image: null,
   },
 };
+
+// Display order of the cards; the featured one gets the early-access styling.
+export const caseOrder: CaseId[] = ['umbral', 'morgado', 'journaling', 'elizabeth'];
+export const featuredCase: CaseId = 'umbral';
 
 export const magiUrl = 'https://github.com/jackhorrordevscl/magi';
 export const magiHost = 'github.com/jackhorrordevscl/magi';
