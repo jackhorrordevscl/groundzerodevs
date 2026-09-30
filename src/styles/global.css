@@ -46,6 +46,12 @@ a:hover {
   color: var(--color-link-hover);
 }
 
+:focus-visible {
+  outline: 3px solid var(--color-charcoal);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-amber);
+}
+
 img,
 svg {
   display: block;

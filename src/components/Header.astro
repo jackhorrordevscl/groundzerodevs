@@ -1,0 +1,116 @@
+---
+// Site header for the ES page. Nav anchors point to sections added in T3.
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="groundzerodevs, inicio">
+    <span class="brand-mark" aria-hidden="true">0,0</span>
+    <span class="brand-name">groundzerodevs</span>
+  </a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#servicios">Servicios</a>
+    <a href="#casos">Casos</a>
+    <a href="#sostener">Sostener</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <div class="tools">
+    <span class="lang">
+      <b aria-current="true"><span class="sr-only">Español, </span>ES</b>
+      <span aria-hidden="true"> | </span>
+      <a href="/en/" lang="en" hreflang="en">EN</a>
+    </span>
+    <a class="wa" href="https://wa.me/56956039666">WhatsApp</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    min-height: 5.5rem;
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-5);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+  }
+  .brand-mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--color-amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    font-weight: 500;
+    order: 3;
+    width: 100%;
+  }
+  .nav a {
+    text-decoration: none;
+  }
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .lang a {
+    text-decoration: none;
+  }
+  .wa {
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--space-3) 1.25rem;
+  }
+  .wa:hover {
+    color: var(--color-bone);
+    background: var(--color-ink-muted);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 40rem) {
+    .site-header {
+      padding-inline: var(--gutter);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-header {
+      flex-wrap: nowrap;
+      padding-block: 0;
+    }
+    .nav {
+      order: 0;
+      width: auto;
+    }
+  }
+</style>

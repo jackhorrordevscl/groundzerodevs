@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout lang="es" title="groundzerodevs" description="groundzerodevs">
+<BaseLayout
+  lang="es"
+  title="groundzerodevs · Software, presencia digital y soporte"
+  description="Construimos lo que tu negocio necesita y lo mantenemos en pie. Software, presencia digital y soporte continuo para pymes y startups en Chile y LATAM."
+>
+  <Header />
   <main>
-    <h1>groundzerodevs</h1>
+    <Hero />
   </main>
 </BaseLayout>
