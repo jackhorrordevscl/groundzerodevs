@@ -95,11 +95,7 @@ Plan created 2026-09-30.
 
 - T8 mail authentication RESOLVED (2026-09-30): user ran cPanel Repair; Email Deliverability now reports valid. DNS read at ns16.hostgator.cl: new DKIM key at `default._domainkey`; SPF now `v=spf1 +a +mx +ip4:162.241.60.174 +include:websitewelcome.com ~all` (kept the include); DMARC unchanged `p=none`; google-site-verification TXT intact. A Roundcube message from contacto@ to Gmail after the repair shows `DKIM-Signature d=groundzerodevs.com s=default` and Gmail `dkim=pass`, `spf=pass`, `dmarc=pass`, delivered to inbox. Later option: raise DMARC to `quarantine` after a few days of clean mail; not done.
 
-## Next step (updated)
-Finish T8: real form test in ES and EN (message in contacto@, not spam), SPF/DKIM/DMARC per `docs/email-setup.md`, delete the temporary FTP account `gentle@`. Then T9 and the deferred Cloudflare token.
+- Git state (2026-09-30, user decisions): `feat/landing` fast-forwarded into `main` and pushed (`main` = `origin/main` = 226cda7, T0-T8 all pushed); local `feat/landing` deleted (the remote branch still exists); work continues directly on `main`, `init.defaultBranch=main` set in the repo. Every push still needs explicit user authorization.
 
-## Previous next step
-T8: deploy to HostGator (`.htaccess` HTTPS/caching/www redirect, `allowed_hosts`, upload `dist/`, real form test both languages, SPF/DKIM/DMARC, 403 on `contact.config.php`). Needs the user's cPanel/FTP access decisions and the Cloudflare token (deferred). T9 (screenshots) blocked on the user.
-
-## Previous next step
-T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
+## Next step
+T9: replace the placeholder case images with the 4 real screenshots (`src/data/cases.ts`; blocked on the user). Also pending on the user: delete the temporary FTP account `gentle@` in cPanel, written client OK for the cases, Cloudflare token (deferred; set `PUBLIC_CF_BEACON_TOKEN` at build, redeploy, confirm the event). Optional later: DMARC to `quarantine`, HSTS/CSP, ask HostGator to exclude `/contact.php` from bot protection, prioritize Umbral's security issues before promoting it. Redeploy flow: `npm run build`, zip `dist/` contents (.NET ZipArchive, not `tar`), upload via cPanel, `unzip -o` in `public_html`.
