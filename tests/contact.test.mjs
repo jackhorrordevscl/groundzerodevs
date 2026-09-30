@@ -151,6 +151,19 @@ test('CR/LF injection in name and email never creates extra headers', async () =
   assert.ok(headers.some((l) => /^Reply-To: Eve Bcc: victim@example.com X-Injected: 1 </.test(l)), 'name collapsed onto one line');
 });
 
+test('address syntax in the name is always encoded in Reply-To', async () => {
+  const before = outboxText(open).length;
+  const name = 'Doe, John <evil@example.com> Bcc: x@example.com';
+  const r = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, name });
+  assert.equal(r.status, 200);
+  const added = outboxText(open).slice(before);
+  const raw = headerBlock(added).replace(/\r\n[ \t]+/g, '');
+  const replyTo = raw.split('\r\n').find((l) => l.startsWith('Reply-To:'));
+  assert.ok(replyTo, 'Reply-To present');
+  assert.doesNotMatch(replyTo, /evil@example\.com|x@example\.com/, 'name is not visible as address syntax');
+  assert.match(replyTo, /^Reply-To: (=\?UTF-8\?B\?[A-Za-z0-9+/=]+\?= ?)+ <ana@example\.com>$/);
+});
+
 test('cross-origin and missing Origin/Referer are rejected; Referer works as fallback', async () => {
   const evil = await request(open.port, 'POST', { ...json, Origin: 'https://evil.example' }, good);
   assert.equal(evil.status, 403);

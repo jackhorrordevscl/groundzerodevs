@@ -113,10 +113,14 @@ function gzd_single_line($s)
     return trim($out === null ? '' : $out);
 }
 
-/** RFC 2047 encoded-word text safe for a header value; printable ASCII is returned unchanged. */
-function gzd_encode_header($s)
+/**
+ * RFC 2047 encoded-word text safe for a header value. Printable ASCII is returned unchanged
+ * unless $force is set (used for address display names, where characters such as < > , : would
+ * otherwise be parsed as address syntax).
+ */
+function gzd_encode_header($s, $force = false)
 {
-    if (preg_match('/^[\x20-\x7E]*$/', $s)) {
+    if (!$force && preg_match('/^[\x20-\x7E]*$/', $s)) {
         return $s;
     }
     $chars = gzd_chars($s);
@@ -272,7 +276,7 @@ function gzd_handle()
     $fromName = gzd_encode_header(gzd_single_line((string) $config['from_name']));
     $headers = implode("\r\n", array(
         'From: ' . $fromName . ' <' . $config['from'] . '>',
-        'Reply-To: ' . gzd_encode_header($name) . ' <' . $email . '>',
+        'Reply-To: ' . gzd_encode_header($name, true) . ' <' . $email . '>',
         'MIME-Version: 1.0',
         'Content-Type: text/plain; charset=UTF-8',
         'Content-Transfer-Encoding: quoted-printable',
