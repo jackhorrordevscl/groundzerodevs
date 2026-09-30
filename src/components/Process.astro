@@ -1,0 +1,97 @@
+---
+// Process section: four steps (Diagnosis, Plan, Build, Operate).
+const steps = [
+  { name: 'Diagnóstico', text: 'Entendemos tu negocio y definimos qué construir primero.' },
+  { name: 'Plan', text: 'Acordamos alcance, plazos y prioridades por escrito.' },
+  { name: 'Construcción', text: 'Entregas cortas y visibles, con pruebas.' },
+  { name: 'Operación', text: 'Nos quedamos: monitoreo, soporte y mejora continua.' },
+];
+---
+
+<section id="proceso" class="section process" aria-labelledby="proceso-title">
+  <header class="head">
+    <p class="section-label">04 — PROCESO</p>
+    <h2 id="proceso-title">Cómo trabajamos</h2>
+  </header>
+
+  <ol class="steps">
+    {
+      steps.map((s, i) => (
+        <li class="step">
+          <span class="number" aria-hidden="true">
+            {i + 1}
+          </span>
+          <h3>{s.name}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .process {
+    padding-block: clamp(3rem, 6vw, 5rem);
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .section-label {
+    color: var(--color-amber);
+  }
+  h2 {
+    font-size: clamp(2rem, 4vw, var(--text-3xl));
+    letter-spacing: -0.03em;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6) 1.75rem;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    min-width: 0;
+  }
+  .number {
+    font-family: var(--font-mono);
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--color-amber);
+    line-height: 1;
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+  .step p {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-on-dark-muted);
+  }
+
+  @media (min-width: 36rem) {
+    .steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+// Sustain section with counters. Cutoff 29 Sep 2026. Medians are per project; never a global average,
+// and no per-issue detail for any project.
+const counters = [
+  { value: '204', label: 'incidencias resueltas' },
+  { value: '~3 h', label: 'mediana de resolución · Umbral' },
+  { value: '~19 h', label: 'mediana de resolución · Morgado' },
+  { value: '4', label: 'proyectos en mantenimiento', extra: '+2 en desarrollo' },
+];
+---
+
+<section id="sostener" class="section sustain" aria-labelledby="sostener-title">
+  <header class="head">
+    <p class="section-label">03 — SOSTENER</p>
+    <h2 id="sostener-title">Construir es la mitad. La otra mitad es sostenerlo.</h2>
+  </header>
+
+  <ul class="counters">
+    {
+      counters.map((c) => (
+        <li class="counter">
+          <p class="value">{c.value}</p>
+          <p class="label">{c.label}</p>
+          {c.extra && <p class="extra">{c.extra}</p>}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="note">
+    Datos al <time datetime="2026-09-29">29 sep 2026</time> (jul–sep 2026). Incluye correcciones, mejoras y
+    auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la
+    fecha.
+  </p>
+</section>
+
+<style>
+  .sustain {
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+    background: var(--color-amber);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  h2 {
+    font-size: clamp(1.75rem, 3.2vw, var(--text-2xl));
+    letter-spacing: -0.027em;
+    line-height: 1.05;
+  }
+
+  .counters {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+  .counter {
+    border-top: 3px solid var(--color-charcoal);
+    padding-top: 0.875rem;
+    min-width: 0;
+  }
+  .value {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 6.1vw, var(--text-6xl));
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.034em;
+  }
+  .label {
+    margin-top: 6px;
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+  .extra {
+    margin-top: 2px;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+  .note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.55;
+  }
+
+  @media (min-width: 36rem) {
+    .counters {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .counters {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>
