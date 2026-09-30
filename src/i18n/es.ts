@@ -15,7 +15,6 @@ export const es: Dictionary = {
     contact: 'contacto',
   },
   common: {
-    homeLabel: 'groundzerodevs, inicio',
     homeHref: '/',
     newTab: '(se abre en una pestaña nueva)',
   },

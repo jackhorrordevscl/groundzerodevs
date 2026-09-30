@@ -7,7 +7,7 @@ export interface Dictionary {
   meta: { title: string; description: string };
   // Section ids double as nav anchors, so they are per language and must match the header nav.
   ids: { services: string; work: string; sustain: string; process: string; contact: string };
-  common: { homeLabel: string; homeHref: string; newTab: string };
+  common: { homeHref: string; newTab: string };
   header: {
     navLabel: string;
     menu: string; // visible label of the mobile menu button
