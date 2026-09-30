@@ -38,7 +38,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [x] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
 - [x] T6 SEO and analytics: meta, hreflang, sitemap, OG image, favicon, cookieless analytics. Check: hreflang valid; analytics event NOT seen (no token yet). Evidence: commits 92e96c8, 39765f9, ec8ff2b.
 - [x] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review. Evidence: commits 0219cf4, cc4a4b8, e4b5f9f, 66df8d9, 0771b92.
-- [ ] T8 Deploy to HostGator: `.htaccess` (HTTPS, caching), upload `dist/`, verify live. Check: both languages and form work on the real domain.
+- [~] T8 (live, form works; SPF/DKIM headers and temporary FTP account cleanup pending) Deploy to HostGator: `.htaccess` (HTTPS, caching), upload `dist/`, verify live. Check: both languages and form work on the real domain.
 - [ ] T9 Replace placeholder case images with real screenshots (blocked: user delivers the 4 captures).
 
 ## Open items (user)
@@ -86,6 +86,8 @@ Plan created 2026-09-30.
 - T8 live verification by parent (read-only GET/HEAD on https://groundzerodevs.com, 2026-09-30): http and www (http/https) -> 301 to `https://groundzerodevs.com/`; `/` 200 (42200 B) and `/en/` 200 (41929 B), matching dist sizes; ES/EN `lang`, titles, canonical and hreflang correct; `/contact.config.php`, `/contact.config.php/x`, `/CONTACT.CONFIG.PHP`, `/contact.local.php`, `/.htaccess` -> 403; favicon.ico, og.png, robots.txt, sitemap-index.xml and sitemap-0.xml -> 200; unknown path -> 404; gzip on; security headers present; no beacon (no token). NOT verified: form submit and mail delivery (spam/SPF/DKIM/DMARC), PHP version actually used by the domain, Lighthouse on the live host, HSTS/CSP (not enabled).
 
 - T8 finding: on the live host the first form POST from a browser `fetch()` got HTTP 409 with a tiny script setting a `humans_<id>=1` cookie (host bot protection, apparently Imunify360; hypothesis). The request never reached `contact.php`. User confirmed in a real browser that setting `document.cookie="humans_21909=1; path=/"` makes the POST return 200 and the mail reach contacto@. Fix in `Contact.astro`: on 409, read the body, extract `humans_<digits>=1`, set the cookie with `path=/` and retry once. Verified locally with Playwright + Brave and a mocked 409 (ES and EN: 2 POSTs, cookie on the retry, success message localized). NOT verified: against the real host after deploy (needs re-upload), and that the cookie id stays stable. Optional extra: ask HostGator to exclude `/contact.php` from the bot protection. PHP 8.3 confirmed by the user for the domain.
+
+- T8 user-observed in production after re-upload of commit 8b722da: the form submitted from `/` (ES) and `/en/` (EN) delivers both messages to contacto@ (user report; inbox vs spam and SPF/DKIM/DMARC results not reported yet).
 
 ## Next step (updated)
 Finish T8: real form test in ES and EN (message in contacto@, not spam), SPF/DKIM/DMARC per `docs/email-setup.md`, delete the temporary FTP account `gentle@`. Then T9 and the deferred Cloudflare token.
