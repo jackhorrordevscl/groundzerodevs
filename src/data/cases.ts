@@ -19,8 +19,8 @@ export const caseMedia: Record<CaseId, CaseMedia> = {
     image: null,
   },
   elizabeth: {
-    url: 'https://elizabeth-landing.vercel.app',
-    host: 'elizabeth-landing.vercel.app',
+    url: 'https://abogadaelizabeth.vercel.app',
+    host: 'abogadaelizabeth.vercel.app',
     image: null,
   },
 };
