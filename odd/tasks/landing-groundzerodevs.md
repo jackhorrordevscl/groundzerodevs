@@ -36,7 +36,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 - [x] T3 Remaining ES sections: pillars, cases (placeholder images), sustain counters, process, contact block, footer. Check: build + copy matches `landing-decisions`.
 - [x] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
 - [x] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
-- [ ] T6 SEO and analytics: meta, hreflang, sitemap, OG image, cookieless analytics. Check: hreflang valid, analytics event seen.
+- [x] T6 SEO and analytics: meta, hreflang, sitemap, OG image, favicon, cookieless analytics. Check: hreflang valid; analytics event NOT seen (no token yet). Evidence: commits 92e96c8, 39765f9, ec8ff2b.
 - [ ] T7 Responsive, accessibility, performance pass. Check: Lighthouse and mobile viewport review.
 - [ ] T8 Deploy to HostGator: `.htaccess` (HTTPS, caching), upload `dist/`, verify live. Check: both languages and form work on the real domain.
 - [ ] T9 Replace placeholder case images with real screenshots (blocked: user delivers the 4 captures).
@@ -75,8 +75,11 @@ Plan created 2026-09-30.
 - T5 NOT verified (needs T8): real `mail()` delivery on HostGator and inbox vs spam, SPF/DKIM/DMARC, `.htaccess` deny rules (`/contact.config.php` and `/contact.local.php` must return 403), PHP version on the host. Known limitation: with JavaScript disabled the redirect works but no message is shown.
 - Open for T8: decide `allowed_hosts` for `www.groundzerodevs.com` (empty by default; prefer redirecting www to the apex in `.htaccess`); after deploy send a real test from the form both languages and follow `docs/email-setup.md`. Stale comment in Contact.astro fixed.
 
+- T6 done via delegated writer (trigger: 2+ non-trivial files). Commits 92e96c8 (hreflang es/en/x-default, canonical, `@astrojs/sitemap`, robots.txt, OG/Twitter, `og.png` 1200x630, no tagline so one image serves both languages), 39765f9 (favicon svg + ico), ec8ff2b (Cloudflare Web Analytics beacon rendered only when `PUBLIC_CF_BEACON_TOKEN` is set at build; `docs/analytics.md`). Parent verification: `npm run build` OK (2 pages); hreflang and canonical reciprocal and absolute on both pages; sitemap-index, sitemap-0 and robots.txt in dist; favicon files in dist; no beacon without the token (writer also verified the dummy-token build).
+- T6 NOT verified: analytics event (needs the real Cloudflare token), favicon in a browser tab, social-card validators, Google hreflang tooling, `test:contact` (no PHP in this run). `.env.example` could not be written (path denied by permission settings); `docs/analytics.md` tells the user to create `.env` directly. hreflang uses plain `es`/`en`, `og:locale` uses es_CL/en_US.
+
 ## Next step
-T6: SEO and analytics (hreflang alternates, sitemap, OG image, favicon, cookieless analytics). Then T7 (a11y/perf), T8 (deploy), T9 (screenshots). Before T6 a user choice is needed on analytics (see below).
+T7: responsive, accessibility, performance (ES|EN link under 24px, mobile menu, max width at 1920, contrast, Lighthouse). Then T8 (deploy), T9 (screenshots). User pending: Cloudflare token to enable analytics.
 
 ## Previous next step
 T5: PHP contact form handler (`/contact.php`) with honeypot, validation and delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Needs a user decision on mail delivery (see below).
