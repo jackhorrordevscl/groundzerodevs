@@ -32,7 +32,7 @@ Astro (static output, native i18n) + PHP script for the contact form (honeypot, 
 ## Tasks
 - [x] T0 Initialize git repo in the project root and create feature branch (user authorized 2026-09-30). Evidence: branch `feat/landing`, remote `origin` = github.com/jackhorrordevscl/groundzerodevs (empty repo, nothing pushed); commits 015863d, 0150c8d.
 - [x] T1 Scaffold Astro project, i18n routing (`/` ES, `/en/` EN), design tokens (colors, fonts), base layout. Check: `astro build` passes.
-- [ ] T2 Hero (ES) with blueprint details: grid, axes, origin 0,0, pillars, Santiago coordinate (33.4489° S · 70.6693° W). Check: visual match with approved C.
+- [x] T2 Hero (ES) with blueprint details: grid, axes, origin 0,0, pillars, Santiago coordinate (33.4489° S · 70.6693° W). Check: visual match with approved C.
 - [ ] T3 Remaining ES sections: pillars, cases (placeholder images), sustain counters, process, contact block, footer. Check: build + copy matches `landing-decisions`.
 - [ ] T4 EN version at `/en/` from approved D copy (Build/Presence/Sustain, issues, Discovery/Plan/Build/Operate, Attorney). Check: parity with ES, no overflow.
 - [ ] T5 Contact form: PHP handler, honeypot, validation, delivery to contacto@groundzerodevs.com; SPF/DKIM checklist. Check: test submission received, not spam-foldered.
@@ -51,5 +51,8 @@ Plan created 2026-09-30.
 - T1 done via delegated writer (trigger: 2+ non-trivial files). Commit 717ab1c. Checks observed: `npm run build` OK, 2 pages; `dist/index.html` lang="es", `dist/en/index.html` lang="en"; parent re-ran the build. Astro ^7.3.5. Design values reused from C-Editorial; green #2ea36b is a writer choice (design has none). Bricolage 500 is not loaded (spec says 700/800).
 - Untracked `.atl/` (tooling output) left out of commits.
 
+- T2 done via delegated writer (trigger: 2+ non-trivial files). Commit 7fbd3a3. Added Header.astro (C artboard includes nav) and Hero.astro; fluid layout (2 columns from 1100px). Checks observed: `npm run build` OK (parent re-ran); one h1; WhatsApp link x2; coordinate text present. Visual check by writer via headless Chromium screenshots at 1440/1100/800/360px, no overflow seen; NOT verified: numeric overflow measurement, last two small CSS edits re-shot, 1600px+, real device. Bricolage 500 not needed. Nav links wrap on <1024px (no mobile menu yet: revisit in T7).
+- `.atl/` added to .gitignore (be741d9).
+
 ## Next step
-T2: hero (ES) with blueprint details.
+User to review the hero in the browser (`npm run dev`), then T3: remaining ES sections.
