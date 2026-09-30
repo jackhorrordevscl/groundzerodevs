@@ -52,6 +52,7 @@ Plan created 2026-09-30.
 - Untracked `.atl/` (tooling output) left out of commits.
 
 - T2 done via delegated writer (trigger: 2+ non-trivial files). Commit 7fbd3a3. Added Header.astro (C artboard includes nav) and Hero.astro; fluid layout (2 columns from 1100px). Checks observed: `npm run build` OK (parent re-ran); one h1; WhatsApp link x2; coordinate text present. Visual check by writer via headless Chromium screenshots at 1440/1100/800/360px, no overflow seen; NOT verified: numeric overflow measurement, last two small CSS edits re-shot, 1600px+, real device. Bricolage 500 not needed. Nav links wrap on <1024px (no mobile menu yet: revisit in T7).
+- T2 verification by parent with Playwright (playwright-core, Brave 154, headless, script kept in scratchpad, not in repo) against `astro preview`: widths 360/390/640/768/1024/1100/1280/1440/1600/1920 have no horizontal overflow and no off-screen elements; one h1 at every width; fonts loaded (Bricolage 800, Instrument Sans 400/500/600, JetBrains Mono 400/500); Tab focus ring visible on all 8 stops; 0 running animations with prefers-reduced-motion; WCAG AA contrast: no failures; `/en/` returns 200 with lang="en". Findings: (1) at 360px the `y ↓` tick touches the `03 SOSTENER` chip in the diagram (seen in screenshot) — open, fix in T7 or sooner; (2) no favicon (404 on /favicon.ico) — add in T6; (3) nav anchors (#servicios, #casos, #sostener, #proceso, #contacto) have no targets until T3.
 - `.atl/` added to .gitignore (be741d9).
 
 ## Next step
