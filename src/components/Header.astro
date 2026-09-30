@@ -97,6 +97,15 @@ const t = getDictionary(lang);
     gap: 1.25rem;
     font-size: 0.9375rem;
   }
+  /* Both entries keep at least 24x24 CSS px (WCAG 2.2 target size) without changing the look. */
+  .lang a,
+  .lang b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+  }
   .lang a {
     text-decoration: none;
   }
