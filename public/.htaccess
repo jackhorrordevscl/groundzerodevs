@@ -1,0 +1,12 @@
+# Contact form: never serve configuration, local overrides or private data over HTTP.
+# Works on Apache 2.4 (Require) and 2.2 (Order/Deny). T8 will add HTTPS redirect and caching here.
+<FilesMatch "^(contact\.config\.php|contact\.local\.php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+

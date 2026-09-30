@@ -8,3 +8,9 @@ dist/
 .DS_Store
 .codegraph/
 .atl/
+
+# Contact form: local overrides and private working files must never be committed
+public/contact.local.php
+contact.local.php
+contact-data/
+contact-outbox.log
