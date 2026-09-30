@@ -10,6 +10,7 @@ export interface Dictionary {
   common: { homeLabel: string; homeHref: string; newTab: string };
   header: {
     navLabel: string;
+    menu: string; // visible label of the mobile menu button
     nav: { services: string; work: string; sustain: string; process: string; contact: string };
   };
   hero: {

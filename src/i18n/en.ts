@@ -22,6 +22,7 @@ export const en: Dictionary = {
   },
   header: {
     navLabel: 'Main',
+    menu: 'Menu',
     nav: {
       services: 'Services',
       work: 'Work',

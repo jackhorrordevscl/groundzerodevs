@@ -11,41 +11,80 @@ const { lang } = Astro.props;
 const t = getDictionary(lang);
 ---
 
+{/* Marks the page as scripted so the CSS can collapse the nav; without JS the nav stays visible. */}
+<script is:inline>
+  document.documentElement.classList.add('js');
+</script>
+
 <header class="site-header">
   <a class="brand" href={t.common.homeHref} aria-label={t.common.homeLabel}>
     <span class="brand-mark" aria-hidden="true">0,0</span>
     <span class="brand-name">groundzerodevs</span>
   </a>
-  <nav class="nav" aria-label={t.header.navLabel}>
-    <a href={`#${t.ids.services}`}>{t.header.nav.services}</a>
-    <a href={`#${t.ids.work}`}>{t.header.nav.work}</a>
-    <a href={`#${t.ids.sustain}`}>{t.header.nav.sustain}</a>
-    <a href={`#${t.ids.process}`}>{t.header.nav.process}</a>
-    <a href={`#${t.ids.contact}`}>{t.header.nav.contact}</a>
-  </nav>
-  <div class="tools">
-    <span class="lang">
-      {
-        languages.map((l, i) => (
-          <>
-            {i > 0 && <span aria-hidden="true"> | </span>}
-            {l.code === lang ? (
-              <b aria-current="true">
-                <span class="sr-only">{l.name}, </span>
-                {l.label}
-              </b>
-            ) : (
-              <a href={l.href} lang={l.code} hreflang={l.code}>
-                {l.label}
-              </a>
-            )}
-          </>
-        ))
-      }
-    </span>
-    <a class="wa" href="https://wa.me/56956039666">WhatsApp</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+    <span>{t.header.menu}</span>
+    <svg class="menu-icon" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false">
+      <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" />
+    </svg>
+  </button>
+  <div class="menu" id="site-menu">
+    <nav class="nav" aria-label={t.header.navLabel}>
+      <a href={`#${t.ids.services}`}>{t.header.nav.services}</a>
+      <a href={`#${t.ids.work}`}>{t.header.nav.work}</a>
+      <a href={`#${t.ids.sustain}`}>{t.header.nav.sustain}</a>
+      <a href={`#${t.ids.process}`}>{t.header.nav.process}</a>
+      <a href={`#${t.ids.contact}`}>{t.header.nav.contact}</a>
+    </nav>
+    <div class="tools">
+      <span class="lang">
+        {
+          languages.map((l, i) => (
+            <>
+              {i > 0 && <span aria-hidden="true"> | </span>}
+              {l.code === lang ? (
+                <b aria-current="true">
+                  <span class="sr-only">{l.name}, </span>
+                  {l.label}
+                </b>
+              ) : (
+                <a href={l.href} lang={l.code} hreflang={l.code}>
+                  {l.label}
+                </a>
+              )}
+            </>
+          ))
+        }
+      </span>
+      <a class="wa" href="https://wa.me/56956039666">WhatsApp</a>
+    </div>
   </div>
 </header>
+
+<script>
+  // Progressive enhancement for the mobile menu: state lives in aria-expanded, CSS does the rest.
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('site-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => toggle.setAttribute('aria-expanded', String(open));
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+
+    toggle.addEventListener('click', () => setOpen(!isOpen()));
+    // Following an anchor closes the menu so the target section is visible.
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || !isOpen()) return;
+      // Give focus back to the button only if it was inside the menu, so it is not lost.
+      if (menu.contains(document.activeElement)) toggle.focus();
+      setOpen(false);
+    });
+    // Reset when the layout switches to the desktop nav, where the button is hidden.
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
 
 <style>
   .site-header {
@@ -55,7 +94,7 @@ const t = getDictionary(lang);
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-3) var(--space-5);
+    gap: var(--space-3);
   }
   .brand {
     display: flex;
@@ -80,22 +119,57 @@ const t = getDictionary(lang);
     font-weight: 800;
     letter-spacing: -0.5px;
   }
+
+  /* Menu button: only shown when scripted and below the desktop breakpoint. */
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.75rem;
+    margin-left: auto;
+    padding: 0 var(--space-3);
+    border: 2px solid var(--color-charcoal);
+    background: transparent;
+    color: var(--color-charcoal);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .menu-toggle:hover {
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+  }
+  :global(.js) .menu-toggle {
+    display: inline-flex;
+  }
+
+  /* Below 64rem the menu is a full-width panel under the bar; without JS it simply stays open. */
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-charcoal);
+  }
+  :global(.js) .menu-toggle[aria-expanded='false'] + .menu {
+    display: none;
+  }
   .nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-6);
+    flex-direction: column;
     font-weight: 500;
-    order: 3;
-    width: 100%;
   }
   .nav a {
     text-decoration: none;
+    font-size: var(--text-lg);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-line);
   }
   .tools {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1.25rem;
     font-size: 0.9375rem;
+    padding-block: var(--space-4);
   }
   /* Both entries keep at least 24x24 CSS px (WCAG 2.2 target size) without changing the look. */
   .lang a,
@@ -135,14 +209,32 @@ const t = getDictionary(lang);
     }
   }
 
+  /* Desktop: the panel dissolves so brand, nav and tools sit in one row as in the design. */
   @media (min-width: 64rem) {
     .site-header {
       flex-wrap: nowrap;
       padding-block: 0;
+      column-gap: var(--space-5);
+    }
+    .menu-toggle,
+    :global(.js) .menu-toggle {
+      display: none;
+    }
+    .menu,
+    :global(.js) .menu-toggle[aria-expanded='false'] + .menu {
+      display: contents;
     }
     .nav {
-      order: 0;
-      width: auto;
+      flex-direction: row;
+      gap: var(--space-2) var(--space-6);
+    }
+    .nav a {
+      font-size: inherit;
+      padding: 0;
+      border-bottom: 0;
+    }
+    .tools {
+      padding-block: 0;
     }
   }
 </style>
