@@ -1,0 +1,64 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "B-Terminal.dc.html": {
+      "expand": "fill",
+      "h": 4272,
+      "title": "B · Terminal",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "C-Editorial.dc.html": {
+      "expand": "fill",
+      "h": 4668,
+      "title": "C · Editorial cálido",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "D-Editorial-EN.dc.html": {
+      "expand": "fill",
+      "h": 4668,
+      "title": "D · Editorial (EN)",
+      "w": 1440,
+      "x": 4560,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 4148,
+      "title": "A · Blueprint",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-29T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "groundzerodevs · 3 direcciones de landing (ES) + versión EN de C",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "B-Terminal.dc.html",
+    "C-Editorial.dc.html",
+    "D-Editorial-EN.dc.html"
+  ],
+  "pages": [],
+  "title": "Ground Zero Landing"
+}
