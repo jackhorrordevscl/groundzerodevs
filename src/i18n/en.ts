@@ -93,6 +93,12 @@ export const en: Dictionary = {
         name: 'Elizabeth Maureira, Attorney',
         text: 'Professional website for a lawyer in Providencia, Santiago.',
       },
+      champa: {
+        kind: 'CLIENT · PRESENCE',
+        status: 'IN DEVELOPMENT',
+        name: 'Vidriería Champa',
+        text: 'Website for a glazing company in Santiago with 24/7 emergency response and direct quoting via WhatsApp.',
+      },
     },
     thumbAlt: (name) => `Screenshot of ${name}`,
     thumbPending: (name) => `[SCREENSHOT PENDING · ${name.toUpperCase()}]`,

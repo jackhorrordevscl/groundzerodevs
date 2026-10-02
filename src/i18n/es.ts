@@ -92,6 +92,12 @@ export const es: Dictionary = {
         name: 'Elizabeth Maureira, Abogada',
         text: 'Sitio profesional de una abogada en Providencia, Santiago.',
       },
+      champa: {
+        kind: 'CLIENTE · PRESENCIA',
+        status: 'EN DESARROLLO',
+        name: 'Vidriería Champa',
+        text: 'Sitio de una vidriería en Santiago con atención de emergencia 24/7 y cotización directa por WhatsApp.',
+      },
     },
     thumbAlt: (name) => `Captura de ${name}`,
     thumbPending: (name) => `[CAPTURA PENDIENTE · ${name.toUpperCase()}]`,

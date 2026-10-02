@@ -3,7 +3,7 @@
 // public landing only, never the app). To swap one, drop the WebP there and set `image` here;
 // nothing else changes. `null` falls back to a neutral placeholder.
 
-export type CaseId = 'umbral' | 'morgado' | 'journaling' | 'elizabeth';
+export type CaseId = 'umbral' | 'morgado' | 'journaling' | 'elizabeth' | 'champa';
 
 export interface CaseMedia {
   url: string;
@@ -24,10 +24,15 @@ export const caseMedia: Record<CaseId, CaseMedia> = {
     host: 'abogadaelizabeth.vercel.app',
     image: '/cases/elizabeth.webp',
   },
+  champa: {
+    url: 'https://vidrieria-champa.vercel.app',
+    host: 'vidrieria-champa.vercel.app',
+    image: '/cases/champa.webp',
+  },
 };
 
 // Display order of the cards; the featured one gets the early-access styling.
-export const caseOrder: CaseId[] = ['umbral', 'morgado', 'journaling', 'elizabeth'];
+export const caseOrder: CaseId[] = ['umbral', 'morgado', 'journaling', 'elizabeth', 'champa'];
 export const featuredCase: CaseId = 'umbral';
 
 export const magiUrl = 'https://github.com/jackhorrordevscl/magi';
