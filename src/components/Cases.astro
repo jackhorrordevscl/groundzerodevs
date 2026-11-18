@@ -193,15 +193,26 @@ const t = getDictionary(lang);
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-5);
     }
-    /* The featured case spans the full row: screenshot left, text right. */
+    /* The featured case spans the full row (stacked here; side by side from 75rem). */
     .card.featured {
       grid-column: 1 / -1;
+    }
+    /* Five cards follow the featured one: the last (6th child) sits centered under the pairs. */
+    .card:last-child:nth-child(even) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--space-5)) / 2);
+    }
+  }
+
+  /* Side by side: screenshot left, text right. Below 75rem the text is taller than the 16:10 thumbnail,
+     which would stretch it and crop the capture sideways, so the card stays stacked there. */
+  @media (min-width: 75rem) {
+    .card.featured {
       flex-direction: row;
     }
     .card.featured :global(.thumb) {
       flex: 0 0 55%;
-      height: auto;
-      min-height: 16rem;
       border-bottom: 0;
       border-right: 1px dashed var(--color-dark-line);
     }
@@ -211,13 +222,7 @@ const t = getDictionary(lang);
       padding: var(--space-6);
     }
     .card.featured h3 {
-      font-size: var(--text-2xl, clamp(2rem, 4vw, 3rem));
-    }
-    /* Five cards follow the featured one: the last (6th child) sits centered under the pairs. */
-    .card:last-child:nth-child(even) {
-      grid-column: 1 / -1;
-      justify-self: center;
-      width: calc((100% - var(--space-5)) / 2);
+      font-size: var(--text-2xl);
     }
   }
 
