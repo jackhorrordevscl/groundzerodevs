@@ -14,6 +14,8 @@ export default defineConfig({
   integrations: [
     // Emits sitemap-index.xml with xhtml:link alternates for each locale.
     sitemap({
+      // Build date for every URL: the site is rebuilt and redeployed per change.
+      lastmod: new Date(),
       i18n: {
         defaultLocale: 'es',
         locales: { es: 'es', en: 'en' },
