@@ -197,7 +197,10 @@ const t = getDictionary(lang);
     .card.featured {
       grid-column: 1 / -1;
     }
-    /* Five cards follow the featured one: the last (6th child) sits centered under the pairs. */
+  }
+
+  /* Two columns: the five cards after the featured one leave the last (6th child) alone, so center it. */
+  @media (min-width: 48rem) and (max-width: 74.99rem) {
     .card:last-child:nth-child(even) {
       grid-column: 1 / -1;
       justify-self: center;
@@ -205,14 +208,26 @@ const t = getDictionary(lang);
     }
   }
 
-  /* Side by side: screenshot left, text right. Below 75rem the text is taller than the 16:10 thumbnail,
-     which would stretch it and crop the capture sideways, so the card stays stacked there. */
+  /* Wide screens: three columns keep each 16:10 capture whole but about a third smaller. A 6-column grid
+     lets the featured card span all of it and the last two cards sit centered under the first three.
+     The featured card goes side by side (screenshot left, text right); below 75rem its text is taller than
+     the thumbnail, which would stretch and crop the capture sideways, so it stays stacked there. */
   @media (min-width: 75rem) {
+    .grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    .card {
+      grid-column: span 2;
+    }
     .card.featured {
+      grid-column: 1 / -1;
       flex-direction: row;
     }
+    .card:nth-child(5) {
+      grid-column: 2 / span 2;
+    }
     .card.featured :global(.thumb) {
-      flex: 0 0 55%;
+      flex: 0 0 45%;
       border-bottom: 0;
       border-right: 1px dashed var(--color-dark-line);
     }
