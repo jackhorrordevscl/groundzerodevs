@@ -185,6 +185,12 @@ const t = getDictionary(lang);
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-5);
     }
+    /* An odd last card sits centered under the pair instead of hanging on the left. */
+    .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--space-5)) / 2);
+    }
   }
 
   @media (min-width: 64rem) {
