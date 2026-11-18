@@ -1,6 +1,8 @@
-# Deploy to HostGator (shared hosting, FTP)
+# Deploy to HostGator (shared hosting)
 
 Static Astro site plus one PHP script (`contact.php`). Everything in `dist/` goes into `public_html/`.
+
+**Flow used in production:** build, zip the **contents** of `dist/` (including dotfiles such as `.htaccess`), upload the zip through cPanel File Manager into `public_html/` and extract it there, overwriting. FTP is optional: this server does not support FTPS (explicit TLS), so the FTP notes below only apply if you choose plain FTP. On Windows, create the zip with .NET `ZipArchive` and `/` path separators; the built-in `tar` can produce a corrupt zip.
 Mail setup (SPF/DKIM/DMARC, transport, throttle) lives in [`email-setup.md`](email-setup.md); analytics in [`analytics.md`](analytics.md).
 
 ## Prerequisites
