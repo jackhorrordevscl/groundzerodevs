@@ -17,7 +17,7 @@ Give the agency a distinctive ("Ground Zero" identity, not generic LATAM look) p
 - Fonts (Google Fonts): Bricolage Grotesque 700/800, Instrument Sans 400/500/600, JetBrains Mono 400/500.
 - Contact: WhatsApp +56 9 5603 9666 (wa.me/56956039666), form, contacto@groundzerodevs.com. Do NOT publish jmartinez@groundzerodevs.com.
 - Cases: Umbral (umbral.groundzerodevs.com, early access), Morgado (morgadoyasociados.cl), Journaling En Red (journalingenred.vercel.app), Elizabeth Maureira Attorney (abogadaelizabeth.vercel.app). MAGI (github.com/jackhorrordevscl/magi) as mention only, no NERV/Evangelion imagery.
-- Sustain counters (cutoff 2026-09-29): 204 issues, median ~3 h Umbral, ~19 h Morgado, 4 projects in maintenance, +2 in development. Never mix global averages; never expose Umbral issue detail.
+- Sustain counters (cutoff 2026-10-02): 223 issues, median ~5 h Umbral, ~19 h Morgado, 4 projects in maintenance, +3 in development. Never mix global averages; never expose Umbral issue detail.
 - Never publish client user data (health and legal sectors). Screenshots: 1440x900 WebP, public pages only; Umbral landing only, never app interior.
 - Artifacts (code, UI copy, comments) in English except ES site copy, which is neutral Spanish (tuteo).
 
