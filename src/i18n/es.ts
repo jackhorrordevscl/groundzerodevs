@@ -33,7 +33,7 @@ export const es: Dictionary = {
     eyebrow: 'CHILE · LATAM — PARA PYMES Y STARTUPS',
     title: 'Construimos lo que tu negocio necesita.',
     titleMark: 'Y lo mantenemos en pie.',
-    lead: 'Software, presencia digital y soporte continuo. Un solo equipo, con IA aplicada en cada etapa.',
+    lead: 'Software a medida, presencia digital y soporte continuo. Desarrollamos con IA como herramienta; las decisiones y la revisión de cada cambio las hace una persona.',
     ctaPrimary: 'Hablemos por WhatsApp',
     ctaSecondary: 'Ver casos',
     pillarsLabel: 'Pilares',
@@ -42,31 +42,31 @@ export const es: Dictionary = {
   },
   pillars: {
     label: '01 — SERVICIOS',
-    title: 'Tres pilares. Un solo equipo.',
+    title: 'Qué hacemos',
     items: [
       {
         number: '01',
         name: 'Construir',
-        text: 'Software que resuelve un problema real. IA: agentes y chatbots integrados a tus sistemas.',
+        text: 'Software que resuelve un problema real, de la idea a producción.',
         items: ['Software a medida', 'Automatización e integraciones', 'MVP y prototipado'],
       },
       {
         number: '02',
         name: 'Presencia',
-        text: 'Que te encuentren y te recuerden. IA: apoyo en contenido y análisis de métricas.',
+        text: 'Que te encuentren y te recuerden: web, redes y medición.',
         items: ['Community management', 'Diseño y desarrollo web', 'SEO y analítica'],
       },
       {
         number: '03',
         name: 'Sostener',
-        text: 'Lo que construimos, funcionando. IA: triage de tickets y base de conocimiento asistida.',
+        text: 'Lo que construimos, funcionando: soporte, mantenimiento y mejoras.',
         items: ['Soporte a usuarios', 'Mantenimiento y SLA', 'Asesoría tecnológica'],
       },
     ],
   },
   cases: {
     label: '02 — CASOS',
-    title: 'Construimos productos propios. Sabemos lo que cuesta llevarlos a producción.',
+    title: 'Lo que hemos construido y sostenido.',
     items: {
       umbral: {
         kind: 'PRODUCTO PROPIO · CONSTRUIR',
@@ -135,13 +135,13 @@ export const es: Dictionary = {
     steps: [
       { name: 'Diagnóstico', text: 'Entendemos tu negocio y definimos qué construir primero.' },
       { name: 'Plan', text: 'Acordamos alcance, plazos y prioridades por escrito.' },
-      { name: 'Construcción', text: 'Entregas cortas y visibles, con pruebas.' },
+      { name: 'Construcción', text: 'Entregas cortas y visibles, con pruebas. Usamos IA para avanzar más rápido; una persona revisa cada cambio.' },
       { name: 'Operación', text: 'Nos quedamos: monitoreo, soporte y mejora continua.' },
     ],
   },
   contact: {
     label: '05 — CONTACTO',
-    title: '¿Tienes algo en mente? Partamos en cero.',
+    title: '¿Tienes algo en mente? Cuéntanos qué necesitas.',
     hours: 'Respondemos en horario hábil, hora de Chile.',
     name: 'Nombre',
     email: 'Correo',

@@ -34,7 +34,7 @@ export const en: Dictionary = {
     eyebrow: 'CHILE · LATAM: FOR SMBS AND STARTUPS',
     title: 'We build what your business needs.',
     titleMark: 'And keep it running.',
-    lead: 'Software, digital presence and ongoing support. One team, with AI applied at every stage.',
+    lead: 'Custom software, digital presence and ongoing support. We develop with AI as a tool; a person makes the decisions and reviews every change.',
     ctaPrimary: 'Talk on WhatsApp',
     ctaSecondary: 'See our work',
     pillarsLabel: 'Pillars',
@@ -43,31 +43,31 @@ export const en: Dictionary = {
   },
   pillars: {
     label: '01 — SERVICES',
-    title: 'Three pillars. One team.',
+    title: 'What we do',
     items: [
       {
         number: '01',
         name: 'Build',
-        text: 'Software that solves a real problem. AI: agents and chatbots integrated into your systems.',
+        text: 'Software that solves a real problem, from idea to production.',
         items: ['Custom software', 'Automation and integrations', 'MVPs and prototyping'],
       },
       {
         number: '02',
         name: 'Presence',
-        text: 'Get found and get remembered. AI: content support and metrics analysis.',
+        text: 'Get found and get remembered: web, social and measurement.',
         items: ['Community management', 'Web design and development', 'SEO and analytics'],
       },
       {
         number: '03',
         name: 'Sustain',
-        text: 'What we build, up and running. AI: ticket triage and an assisted knowledge base.',
+        text: 'What we build, up and running: support, maintenance and improvements.',
         items: ['User support', 'Maintenance and SLAs', 'Technology advisory'],
       },
     ],
   },
   cases: {
     label: '02 — WORK',
-    title: 'We build our own products. We know what it takes to get them to production.',
+    title: 'What we have built and sustained.',
     items: {
       umbral: {
         kind: 'OWN PRODUCT · BUILD',
@@ -136,13 +136,13 @@ export const en: Dictionary = {
     steps: [
       { name: 'Discovery', text: 'We learn your business and define what to build first.' },
       { name: 'Plan', text: 'We agree scope, timelines and priorities in writing.' },
-      { name: 'Build', text: 'Short, visible deliveries, with tests.' },
+      { name: 'Build', text: 'Short, visible deliveries, with tests. We use AI to move faster; a person reviews every change.' },
       { name: 'Operate', text: 'We stay: monitoring, support and continuous improvement.' },
     ],
   },
   contact: {
     label: '05 — CONTACT',
-    title: "Got something in mind? Let's start from zero.",
+    title: 'Got something in mind? Tell us what you need.',
     hours: 'We reply during business hours, Chile time.',
     name: 'Name',
     email: 'Email',
