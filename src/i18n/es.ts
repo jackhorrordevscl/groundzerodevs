@@ -74,6 +74,12 @@ export const es: Dictionary = {
         name: 'Umbral',
         text: 'Fichas clínicas para psicólogos independientes en Chile. Cifrado, auditoría y normativa chilena.',
       },
+      judired: {
+        kind: 'PRODUCTO PROPIO · CONSTRUIR',
+        status: 'BETA TESTING',
+        name: 'JudiRed',
+        text: 'CRM jurídico para abogados independientes y estudios en Chile. Causas, plazos procesales y Ley 21.719.',
+      },
       morgado: {
         kind: 'CLIENTE · PRESENCIA',
         status: 'EN PRODUCCIÓN',
@@ -111,16 +117,16 @@ export const es: Dictionary = {
     label: '03 — SOSTENER',
     title: 'Construir es la mitad. La otra mitad es sostenerlo.',
     counters: [
-      { value: '223', label: 'incidencias resueltas' },
-      { value: '~5 h', label: 'mediana de resolución · Umbral' },
+      { value: '370', label: 'incidencias resueltas' },
+      { value: '~24 h', label: 'mediana de resolución · Umbral' },
       { value: '~19 h', label: 'mediana de resolución · Morgado' },
-      { value: '4', label: 'proyectos en mantenimiento', extra: '+3 en desarrollo' },
+      { value: '4', label: 'proyectos en mantenimiento', extra: '+4 en desarrollo' },
     ],
     note: {
       before: 'Datos al ',
-      date: '2 oct 2026',
+      date: '18 nov 2026',
       after:
-        ' (jul–oct 2026). Incluye correcciones, mejoras y auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la fecha.',
+        ' (jul–nov 2026). Incluye correcciones, mejoras y auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la fecha.',
     },
   },
   process: {

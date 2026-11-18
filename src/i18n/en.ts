@@ -75,6 +75,12 @@ export const en: Dictionary = {
         name: 'Umbral',
         text: 'Clinical records for independent psychologists in Chile. Encryption, audit trail and Chilean regulatory compliance.',
       },
+      judired: {
+        kind: 'OWN PRODUCT · BUILD',
+        status: 'BETA TESTING',
+        name: 'JudiRed',
+        text: 'Legal CRM for independent lawyers and law firms in Chile. Cases, procedural deadlines and Law 21.719 compliance.',
+      },
       morgado: {
         kind: 'CLIENT · PRESENCE',
         status: 'IN PRODUCTION',
@@ -112,16 +118,16 @@ export const en: Dictionary = {
     label: '03 — SUSTAIN',
     title: 'Building is half the job. The other half is sustaining it.',
     counters: [
-      { value: '223', label: 'issues resolved' },
-      { value: '~5 h', label: 'median resolution · Umbral' },
+      { value: '370', label: 'issues resolved' },
+      { value: '~24 h', label: 'median resolution · Umbral' },
       { value: '~19 h', label: 'median resolution · Morgado' },
-      { value: '4', label: 'projects in maintenance', extra: '+3 in development' },
+      { value: '4', label: 'projects in maintenance', extra: '+4 in development' },
     ],
     note: {
       before: 'Data as of ',
-      date: 'Oct 2, 2026',
+      date: 'Nov 18, 2026',
       after:
-        ' (Jul–Oct 2026). Includes fixes, improvements and audits. Median over closed issues. Two of the four projects have required no changes to date.',
+        ' (Jul–Nov 2026). Includes fixes, improvements and audits. Median over closed issues. Two of the four projects have required no changes to date.',
     },
   },
   process: {
