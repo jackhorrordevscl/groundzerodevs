@@ -111,16 +111,16 @@ export const es: Dictionary = {
     label: '03 — SOSTENER',
     title: 'Construir es la mitad. La otra mitad es sostenerlo.',
     counters: [
-      { value: '204', label: 'incidencias resueltas' },
-      { value: '~3 h', label: 'mediana de resolución · Umbral' },
+      { value: '223', label: 'incidencias resueltas' },
+      { value: '~5 h', label: 'mediana de resolución · Umbral' },
       { value: '~19 h', label: 'mediana de resolución · Morgado' },
-      { value: '4', label: 'proyectos en mantenimiento', extra: '+2 en desarrollo' },
+      { value: '4', label: 'proyectos en mantenimiento', extra: '+3 en desarrollo' },
     ],
     note: {
       before: 'Datos al ',
-      date: '29 sep 2026',
+      date: '2 oct 2026',
       after:
-        ' (jul–sep 2026). Incluye correcciones, mejoras y auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la fecha.',
+        ' (jul–oct 2026). Incluye correcciones, mejoras y auditorías. Mediana sobre incidencias cerradas. Dos de los cuatro proyectos no han requerido cambios a la fecha.',
     },
   },
   process: {

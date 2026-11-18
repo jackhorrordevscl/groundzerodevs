@@ -112,16 +112,16 @@ export const en: Dictionary = {
     label: '03 — SUSTAIN',
     title: 'Building is half the job. The other half is sustaining it.',
     counters: [
-      { value: '204', label: 'issues resolved' },
-      { value: '~3 h', label: 'median resolution · Umbral' },
+      { value: '223', label: 'issues resolved' },
+      { value: '~5 h', label: 'median resolution · Umbral' },
       { value: '~19 h', label: 'median resolution · Morgado' },
-      { value: '4', label: 'projects in maintenance', extra: '+2 in development' },
+      { value: '4', label: 'projects in maintenance', extra: '+3 in development' },
     ],
     note: {
       before: 'Data as of ',
-      date: 'Sep 29, 2026',
+      date: 'Oct 2, 2026',
       after:
-        ' (Jul–Sep 2026). Includes fixes, improvements and audits. Median over closed issues. Two of the four projects have required no changes to date.',
+        ' (Jul–Oct 2026). Includes fixes, improvements and audits. Median over closed issues. Two of the four projects have required no changes to date.',
     },
   },
   process: {
