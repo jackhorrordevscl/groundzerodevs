@@ -27,7 +27,7 @@ const t = getDictionary(lang);
         const c = t.cases.items[id];
         const media = caseMedia[id];
         return (
-          <li class="card">
+          <li class:list={['card', { featured: id === featuredCase }]}>
             <CaseThumb lang={lang} name={c.name} src={media.image} />
             <div class="content">
               <div class="meta">
@@ -36,6 +36,7 @@ const t = getDictionary(lang);
               </div>
               <h3>{c.name}</h3>
               <p>{c.text}</p>
+              <p class="stack">{c.stack}</p>
               <a href={media.url} target="_blank" rel="noopener noreferrer">
                 {media.host} <span aria-hidden="true">↗</span>
                 <span class="sr-only">{t.common.newTab}</span>
@@ -134,6 +135,13 @@ const t = getDictionary(lang);
     line-height: 1.45;
     color: var(--color-on-dark-muted);
   }
+  .content .stack {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    color: var(--color-bone);
+  }
   .content a {
     margin-top: auto;
     padding-top: var(--space-3);
@@ -185,8 +193,28 @@ const t = getDictionary(lang);
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-5);
     }
-    /* An odd last card sits centered under the pair instead of hanging on the left. */
-    .card:last-child:nth-child(odd) {
+    /* The featured case spans the full row: screenshot left, text right. */
+    .card.featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .card.featured :global(.thumb) {
+      flex: 0 0 55%;
+      height: auto;
+      min-height: 16rem;
+      border-bottom: 0;
+      border-right: 1px dashed var(--color-dark-line);
+    }
+    .card.featured .content {
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-6);
+    }
+    .card.featured h3 {
+      font-size: var(--text-2xl, clamp(2rem, 4vw, 3rem));
+    }
+    /* Five cards follow the featured one: the last (6th child) sits centered under the pairs. */
+    .card:last-child:nth-child(even) {
       grid-column: 1 / -1;
       justify-self: center;
       width: calc((100% - var(--space-5)) / 2);
