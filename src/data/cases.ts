@@ -3,7 +3,7 @@
 // public landing only, never the app). To swap one, drop the WebP there and set `image` here;
 // nothing else changes. `null` falls back to a neutral placeholder.
 
-export type CaseId = 'umbral' | 'morgado' | 'journaling' | 'elizabeth' | 'champa';
+export type CaseId = 'umbral' | 'judired' | 'morgado' | 'journaling' | 'elizabeth' | 'champa';
 
 export interface CaseMedia {
   url: string;
@@ -13,6 +13,7 @@ export interface CaseMedia {
 
 export const caseMedia: Record<CaseId, CaseMedia> = {
   umbral: { url: 'https://umbral.groundzerodevs.com', host: 'umbral.groundzerodevs.com', image: '/cases/umbral.webp' },
+  judired: { url: 'https://judired.groundzerodevs.com', host: 'judired.groundzerodevs.com', image: '/cases/judired.webp' },
   morgado: { url: 'https://morgadoyasociados.cl', host: 'morgadoyasociados.cl', image: '/cases/morgado.webp' },
   journaling: {
     url: 'https://journalingenred.vercel.app',
@@ -32,7 +33,7 @@ export const caseMedia: Record<CaseId, CaseMedia> = {
 };
 
 // Display order of the cards; the featured one gets the early-access styling.
-export const caseOrder: CaseId[] = ['umbral', 'morgado', 'journaling', 'elizabeth', 'champa'];
+export const caseOrder: CaseId[] = ['umbral', 'judired', 'morgado', 'journaling', 'elizabeth', 'champa'];
 export const featuredCase: CaseId = 'umbral';
 
 export const magiUrl = 'https://github.com/jackhorrordevscl/magi';
