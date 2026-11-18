@@ -32,7 +32,7 @@ export interface Dictionary {
   cases: {
     label: string;
     title: string;
-    items: Record<CaseId, { kind: string; status: string; name: string; text: string }>;
+    items: Record<CaseId, { kind: string; status: string; name: string; text: string; stack: string }>;
     thumbAlt: (name: string) => string;
     thumbPending: (name: string) => string;
     lab: { ariaLabel: string; label: string; text: string };
