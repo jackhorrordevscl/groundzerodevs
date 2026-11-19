@@ -62,6 +62,7 @@ const t = getDictionary(lang);
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    min-height: 2.75rem;
     text-decoration: none;
   }
   .brand-mark {
@@ -73,7 +74,7 @@ const t = getDictionary(lang);
     align-items: center;
     justify-content: center;
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     font-weight: 500;
   }
   .brand-name {
@@ -88,17 +89,17 @@ const t = getDictionary(lang);
   .mail {
     display: inline-flex;
     align-items: center;
-    min-height: 1.5rem;
+    min-height: 2.75rem;
     overflow-wrap: anywhere;
   }
-  /* Same 24x24 CSS px minimum target as the header switch (WCAG 2.2). */
+  /* 44x44 CSS px targets (WCAG 2.5.5 AAA, mobile). */
   .lang a,
   .lang b {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.5rem;
-    min-height: 1.5rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
   }
   .lang b {
     color: var(--color-amber);
