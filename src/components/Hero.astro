@@ -73,7 +73,11 @@ const t = getDictionary(lang);
   }
   .mark {
     background: var(--color-amber);
-    padding: 0 var(--space-3);
+    /* Shadows (not padding) extend the highlight so every wrapped line keeps the same left text edge. */
+    padding: 0;
+    box-shadow:
+      0.2em 0 0 var(--color-amber),
+      -0.2em 0 0 var(--color-amber);
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
   }
