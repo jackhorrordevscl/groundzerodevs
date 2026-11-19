@@ -178,7 +178,8 @@ const t = getDictionary(lang);
     align-self: flex-start;
     font-size: var(--text-md);
     font-weight: 600;
-    overflow-wrap: anywhere;  display: inline-flex;
+    overflow-wrap: anywhere;
+    display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
   }
@@ -197,13 +198,16 @@ const t = getDictionary(lang);
     display: flex;
     flex-direction: column;
     gap: 6px;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
   input,
   textarea {
     width: 100%;
-    border: 1px solid var(--color-line);
+    border: 2px solid var(--color-charcoal);
     border-radius: 0;
     padding: 0 0.875rem;
     font-size: var(--text-base);
@@ -221,17 +225,18 @@ const t = getDictionary(lang);
   }
   button {
     align-self: flex-start;
-    background: var(--color-charcoal);
-    color: var(--color-bone);
-    border: 0;
+    background: var(--color-amber);
+    color: var(--color-charcoal);
+    border: 2px solid var(--color-charcoal);
     border-radius: 0;
-    padding: 0.875rem 1.75rem;
+    padding: 0.75rem 1.75rem;
     font-size: var(--text-base);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
   }
   button:hover {
-    background: var(--color-ink-muted);
+    background: var(--color-charcoal);
+    color: var(--color-amber);
   }
   button:disabled {
     opacity: 0.6;
