@@ -81,7 +81,7 @@ textarea {
   }
 }
 
-/* Numbered mono label above each section title (01 — SERVICIOS). */
+/* Mono label above each section title (SERVICIOS). */
 .section-label {
   font-family: var(--font-mono);
   font-size: var(--text-sm);

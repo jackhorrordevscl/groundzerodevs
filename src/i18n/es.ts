@@ -41,7 +41,7 @@ export const es: Dictionary = {
     caption: 'Todo sistema empieza en cero. Nosotros lo llevamos a producción.',
   },
   pillars: {
-    label: '01 — SERVICIOS',
+    label: 'SERVICIOS',
     title: 'Qué hacemos',
     items: [
       {
@@ -65,7 +65,7 @@ export const es: Dictionary = {
     ],
   },
   cases: {
-    label: '02 — CASOS',
+    label: 'CASOS',
     title: 'Lo que hemos construido y sostenido.',
     items: {
       umbral: {
@@ -120,10 +120,10 @@ export const es: Dictionary = {
     },
   },
   sustain: {
-    label: '03 — SOSTENER',
+    label: 'SOSTENER',
     title: 'Construir es la mitad. La otra mitad es sostenerlo.',
     counters: [
-      { value: '297', label: 'incidencias resueltas' },
+      { value: '297', label: 'incidencias resueltas', extra: 'jul–nov 2026' },
       { value: '~46 h', label: 'mediana de resolución · Umbral (90 días)' },
       { value: '~19 h', label: 'mediana de resolución · Morgado (histórico)' },
       { value: '4', label: 'proyectos en mantenimiento', extra: '+4 en desarrollo' },
@@ -136,7 +136,7 @@ export const es: Dictionary = {
     },
   },
   process: {
-    label: '04 — PROCESO',
+    label: 'PROCESO',
     title: 'Cómo trabajamos',
     steps: [
       { name: 'Diagnóstico', text: 'Entendemos tu negocio y definimos qué construir primero.' },
@@ -146,7 +146,7 @@ export const es: Dictionary = {
     ],
   },
   contact: {
-    label: '05 — CONTACTO',
+    label: 'CONTACTO',
     title: '¿Tienes algo en mente? Cuéntanos qué necesitas.',
     hours: 'Respondemos en horario hábil, hora de Chile.',
     name: 'Nombre',

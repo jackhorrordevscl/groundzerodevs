@@ -42,7 +42,7 @@ export const en: Dictionary = {
     caption: 'Every system starts at zero. We take it to production.',
   },
   pillars: {
-    label: '01 — SERVICES',
+    label: 'SERVICES',
     title: 'What we do',
     items: [
       {
@@ -66,7 +66,7 @@ export const en: Dictionary = {
     ],
   },
   cases: {
-    label: '02 — WORK',
+    label: 'WORK',
     title: 'What we have built and sustained.',
     items: {
       umbral: {
@@ -121,10 +121,10 @@ export const en: Dictionary = {
     },
   },
   sustain: {
-    label: '03 — SUSTAIN',
+    label: 'SUSTAIN',
     title: 'Building is half the job. The other half is sustaining it.',
     counters: [
-      { value: '297', label: 'issues resolved' },
+      { value: '297', label: 'issues resolved', extra: 'Jul–Nov 2026' },
       { value: '~46 h', label: 'median resolution · Umbral (90 days)' },
       { value: '~19 h', label: 'median resolution · Morgado (all-time)' },
       { value: '4', label: 'projects in maintenance', extra: '+4 in development' },
@@ -137,7 +137,7 @@ export const en: Dictionary = {
     },
   },
   process: {
-    label: '04 — PROCESS',
+    label: 'PROCESS',
     title: 'How we work',
     steps: [
       { name: 'Discovery', text: 'We learn your business and define what to build first.' },
@@ -147,7 +147,7 @@ export const en: Dictionary = {
     ],
   },
   contact: {
-    label: '05 — CONTACT',
+    label: 'CONTACT',
     title: 'Got something in mind? Tell us what you need.',
     hours: 'We reply during business hours, Chile time.',
     name: 'Name',
