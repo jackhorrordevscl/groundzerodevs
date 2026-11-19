@@ -18,6 +18,7 @@ export const en: Dictionary = {
   common: {
     homeHref: '/en/',
     newTab: '(opens in a new tab)',
+    whatsappFloat: 'Message us on WhatsApp',
   },
   header: {
     navLabel: 'Main',

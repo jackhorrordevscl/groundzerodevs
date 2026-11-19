@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { languages } from '../i18n';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
 interface Props {
   lang: 'es' | 'en';
@@ -61,5 +62,6 @@ const ogImage = new URL('/og.png', Astro.site).href;
   </head>
   <body>
     <slot />
+    <WhatsAppFloat lang={lang} />
   </body>
 </html>
