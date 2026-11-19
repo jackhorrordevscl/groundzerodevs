@@ -131,6 +131,34 @@ test('invalid input is rejected with error=invalid', async () => {
   }
 });
 
+test('control characters in the email are rejected (NUL, C0)', async () => {
+  const before = outboxText(open);
+  for (const email of ['"\\\0"@example.com', '"a\x01b"@example.com', '"a\x1fb"@example.com']) {
+    const r = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, email });
+    assert.equal(r.status, 422, JSON.stringify(email));
+    assert.deepEqual(JSON.parse(r.body), { ok: false, error: 'invalid' }, JSON.stringify(email));
+  }
+  assert.equal(outboxText(open), before, 'nothing delivered');
+});
+
+test('a message that is only control characters is rejected after cleaning', async () => {
+  const before = outboxText(open);
+  const r = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, message: '\x01'.repeat(12) });
+  assert.equal(r.status, 422);
+  assert.deepEqual(JSON.parse(r.body), { ok: false, error: 'invalid' });
+  assert.equal(outboxText(open), before, 'nothing delivered');
+});
+
+test('oversized fields are rejected cheaply and the server keeps answering', async () => {
+  const huge = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, message: 'm'.repeat(2_000_000) });
+  assert.equal(huge.status, 422);
+  assert.deepEqual(JSON.parse(huge.body), { ok: false, error: 'invalid' });
+  const hugeName = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, name: 'n'.repeat(200_000) });
+  assert.equal(hugeName.status, 422);
+  const after = await request(open.port, 'POST', { ...same(open.port), ...json }, good);
+  assert.deepEqual(JSON.parse(after.body), { ok: true });
+});
+
 test('boundary lengths are accepted (name 100, message 5000)', async () => {
   const r = await request(open.port, 'POST', { ...same(open.port), ...json }, { ...good, name: 'n'.repeat(100), message: 'm'.repeat(5000) });
   assert.deepEqual(JSON.parse(r.body), { ok: true });

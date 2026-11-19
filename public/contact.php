@@ -244,15 +244,24 @@ function gzd_handle()
         gzd_respond(null, $lang, 200);
     }
 
-    $name = gzd_single_line(gzd_field('name'));
+    $rawName = gzd_field('name');
+    $rawMessage = gzd_field('message');
+    // Cheap byte caps first: character counting below builds one array element per character, so
+    // an oversized field must be refused before it. Generous enough for any valid input
+    // (100 / 5000 characters of up to 4 bytes, plus whitespace and CRLF).
+    if (strlen($rawName) > 2000 || strlen($rawMessage) > 40000) {
+        gzd_respond('invalid', $lang, 422);
+    }
+
+    $name = gzd_single_line($rawName);
     $email = trim(gzd_field('email'));
-    $message = trim(str_replace(array("\r\n", "\r"), "\n", gzd_field('message')));
+    $message = trim(str_replace(array("\r\n", "\r"), "\n", $rawMessage));
 
     $nameLen = gzd_len($name);
     $messageLen = gzd_len($message);
     $valid = $nameLen >= 2 && $nameLen <= 100
         && strlen($email) <= 254 && filter_var($email, FILTER_VALIDATE_EMAIL) !== false
-        && !preg_match('/[\r\n]/', $email)
+        && !preg_match('/[\x00-\x1F\x7F]/', $email)
         && $messageLen >= 10 && $messageLen <= 5000
         && preg_match('//u', $message) === 1;
     if (!$valid) {
@@ -260,6 +269,10 @@ function gzd_handle()
     }
     // Drop control characters other than newline and tab from the body.
     $message = preg_replace('/[^\P{Cc}\n\t]/u', '', $message);
+    // The minimum length must hold after cleaning too (a body of control characters is empty).
+    if ($message === null || gzd_len(trim($message)) < 10) {
+        gzd_respond('invalid', $lang, 422);
+    }
 
     $ip = isset($_SERVER['REMOTE_ADDR']) ? (string) $_SERVER['REMOTE_ADDR'] : 'unknown';
     $dir = gzd_data_dir($config);
