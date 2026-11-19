@@ -123,7 +123,7 @@ export const es: Dictionary = {
     label: 'SOSTENER',
     title: 'Construir es la mitad. La otra mitad es sostenerlo.',
     counters: [
-      { value: '297', label: 'incidencias resueltas' },
+      { value: '297', label: 'incidencias resueltas', extra: 'jul–nov 2026' },
       { value: '~46 h', label: 'mediana de resolución · Umbral (90 días)' },
       { value: '~19 h', label: 'mediana de resolución · Morgado (histórico)' },
       { value: '4', label: 'proyectos en mantenimiento', extra: '+4 en desarrollo' },

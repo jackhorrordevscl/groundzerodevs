@@ -124,7 +124,7 @@ export const en: Dictionary = {
     label: 'SUSTAIN',
     title: 'Building is half the job. The other half is sustaining it.',
     counters: [
-      { value: '297', label: 'issues resolved' },
+      { value: '297', label: 'issues resolved', extra: 'Jul–Nov 2026' },
       { value: '~46 h', label: 'median resolution · Umbral (90 days)' },
       { value: '~19 h', label: 'median resolution · Morgado (all-time)' },
       { value: '4', label: 'projects in maintenance', extra: '+4 in development' },
