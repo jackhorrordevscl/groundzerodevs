@@ -81,9 +81,9 @@ Options -Indexes
   Header always set Strict-Transport-Security "max-age=300"
 
   # Content-Security-Policy, enforcing (it ran report-only first and showed no violations on
-  # the live host in either language). It allows fonts.googleapis.com (CSS), fonts.gstatic.com
-  # (font files), the inline styles/scripts Astro emits and, when enabled,
+  # the live host in either language). Fonts are self-hosted (same origin), so no font CDN is allowed;
+  # it allows the inline styles/scripts Astro emits and, when enabled,
   # static.cloudflareinsights.com + cloudflareinsights.com. Any new third-party resource must
   # be added here or the browser will block it (see docs/deploy.md).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
 </IfModule>
