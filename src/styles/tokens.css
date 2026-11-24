@@ -1,30 +1,37 @@
-/* Design tokens. Values taken from the approved C-Editorial design. */
+/* Design tokens. Values taken from the approved "Cuarzo" identity (rebrand, Nov 2026).
+   Names describe roles, not hues, so a future palette change stays in this file. */
 :root {
   /* Palette */
-  --color-charcoal: #0b0e11;
-  --color-bone: #edebe4;
-  --color-amber: #ffb020;
+  --color-ink: #24123f; /* text, borders and dark sections */
+  --color-surface: #f1eefb; /* page background and text on dark sections */
+  --color-accent: #6d3ae8; /* accent fills; pair with --color-on-accent */
+  --color-on-accent: #ffffff; /* text on accent fills */
+  --color-accent-soft: #b9a2ff; /* accent text and lines on dark (ink) surfaces */
   --color-white: #ffffff;
   --color-green: #2ea36b; /* functional states only (success, status) */
 
-  /* Neutrals used on bone and charcoal surfaces */
-  --color-ink-muted: #3a444d;
-  --color-ink-subtle: #4a5560;
-  --color-line: #6b757d;
-  --color-dark-line: #3a454f;
-  --color-dark-surface: #161c22;
-  --color-on-dark-muted: #b5bcc2;
-  --color-link-hover: #5a4400;
+  /* Neutrals used on light and ink surfaces */
+  --color-ink-muted: #4d3f66;
+  --color-ink-subtle: #5b4d78;
+  --color-line: #8a7daa;
+  --color-dark-line: #3e2d5e;
+  --color-dark-surface: #1a0c30;
+  --color-on-dark-muted: #c9bfe3;
+  --color-link-hover: #5a2bd0;
 
   /* Semantic aliases */
-  --color-bg: var(--color-bone);
-  --color-text: var(--color-charcoal);
-  --color-accent: var(--color-amber);
+  --color-bg: var(--color-surface);
+  --color-text: var(--color-ink);
+
+  /* Corner radii */
+  --radius-sm: 0.625rem; /* 10: marks, inputs, small controls */
+  --radius-md: 0.875rem; /* 14: buttons */
+  --radius-lg: 1.25rem; /* 20: cards and panels */
 
   /* Fonts (loaded from Google Fonts in BaseLayout) */
-  --font-display: 'Bricolage Grotesque', sans-serif;
-  --font-body: 'Instrument Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
 
   /* Type scale (px values from the design) */
   --text-xs: 0.75rem; /* 12 */
