@@ -91,10 +91,12 @@ const t = getDictionary(lang);
     gap: var(--space-5);
   }
   .card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: var(--color-charcoal);
-    color: var(--color-bone);
+    background: var(--color-ink);
+    color: var(--color-surface);
     min-width: 0;
   }
   .content {
@@ -115,15 +117,16 @@ const t = getDictionary(lang);
     letter-spacing: 1.2px;
   }
   .kind {
-    color: var(--color-amber);
+    color: var(--color-accent-soft);
   }
   .status {
+    border-radius: var(--radius-sm);
     border: 1px solid var(--color-line);
     padding: 2px var(--space-2);
   }
   .status.early {
-    border-color: var(--color-amber);
-    color: var(--color-amber);
+    border-color: var(--color-accent-soft);
+    color: var(--color-accent-soft);
   }
   h3 {
     font-size: clamp(1.75rem, 3vw, var(--text-xl));
@@ -140,26 +143,27 @@ const t = getDictionary(lang);
     font-size: 0.75rem;
     letter-spacing: 0.5px;
     line-height: 1.4;
-    color: var(--color-bone);
+    color: var(--color-surface);
   }
   .content a {
     margin-top: auto;
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    color: var(--color-amber);
+    color: var(--color-accent-soft);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 600;
     overflow-wrap: anywhere;
   }
   .content a:hover {
-    color: var(--color-bone);
+    color: var(--color-surface);
     text-decoration: underline;
   }
 
   .lab {
-    border: 2px dashed var(--color-charcoal);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--color-ink);
     padding: var(--space-5);
     display: flex;
     flex-direction: column;
@@ -178,7 +182,7 @@ const t = getDictionary(lang);
     color: var(--color-ink-muted);
   }
   .lab-text b {
-    color: var(--color-charcoal);
+    color: var(--color-ink);
   }
   .lab a {
     display: inline-flex;

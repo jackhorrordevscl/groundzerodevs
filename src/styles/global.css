@@ -41,7 +41,7 @@ h4 {
 }
 
 a {
-  color: var(--color-charcoal);
+  color: var(--color-ink);
 }
 
 a:hover {
@@ -49,9 +49,9 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-charcoal);
+  outline: 3px solid var(--color-ink);
   outline-offset: 3px;
-  box-shadow: 0 0 0 6px var(--color-amber);
+  box-shadow: 0 0 0 6px var(--color-accent-soft);
 }
 
 img,

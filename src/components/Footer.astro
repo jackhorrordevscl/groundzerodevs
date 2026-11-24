@@ -13,7 +13,7 @@ const t = getDictionary(lang);
 
 <footer class="site-footer">
   <a class="brand" href={t.common.homeHref}>
-    <span class="brand-mark" aria-hidden="true">0,0</span>
+    <svg class="brand-mark" viewBox="0 0 30 30" aria-hidden="true" focusable="false"><path d="M15 2 27 9v12l-12 7-12-7V9Z" fill="currentColor" /><path d="M15 2v26M3 9l24 12" stroke="#fff" stroke-width="1.5" stroke-opacity=".55" /></svg>
     <span class="brand-name">groundzerodevs</span>
   </a>
   <p class="muted">Chile · LATAM</p>
@@ -43,8 +43,8 @@ const t = getDictionary(lang);
 <style>
   .site-footer {
     padding: var(--space-8) var(--space-5);
-    background: var(--color-charcoal);
-    color: var(--color-bone);
+    background: var(--color-ink);
+    color: var(--color-surface);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -53,10 +53,10 @@ const t = getDictionary(lang);
     font-size: 0.875rem;
   }
   .site-footer a {
-    color: var(--color-bone);
+    color: var(--color-surface);
   }
   .site-footer a:hover {
-    color: var(--color-amber);
+    color: var(--color-accent-soft);
   }
   .brand {
     display: flex;
@@ -68,14 +68,9 @@ const t = getDictionary(lang);
   .brand-mark {
     width: 1.875rem;
     height: 1.875rem;
-    background: var(--color-amber);
-    color: var(--color-charcoal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
+    flex-shrink: 0;
+    /* The lighter accent keeps the mark visible on the ink footer. */
+    color: var(--color-accent-soft);
   }
   .brand-name {
     font-family: var(--font-display);
@@ -102,13 +97,13 @@ const t = getDictionary(lang);
     min-height: 2.75rem;
   }
   .lang b {
-    color: var(--color-amber);
+    color: var(--color-accent-soft);
   }
   .lang a {
     text-decoration: none;
   }
   .site-footer a.muted:hover {
-    color: var(--color-amber);
+    color: var(--color-accent-soft);
   }
 
   @media (min-width: 40rem) {

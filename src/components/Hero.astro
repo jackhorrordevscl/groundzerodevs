@@ -67,19 +67,12 @@ const t = getDictionary(lang);
   }
   h1 {
     font-size: clamp(2.5rem, 10vw, 5.5rem);
-    line-height: 0.98;
+    line-height: 1.04;
     letter-spacing: -0.038em;
     overflow-wrap: break-word;
   }
   .mark {
-    background: var(--color-amber);
-    /* Shadows (not padding) extend the highlight so every wrapped line keeps the same left text edge. */
-    padding: 0;
-    box-shadow:
-      0.2em 0 0 var(--color-amber),
-      -0.2em 0 0 var(--color-amber);
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+    color: var(--color-accent);
   }
   .lead {
     font-size: var(--text-lg);
@@ -93,21 +86,22 @@ const t = getDictionary(lang);
     gap: var(--space-4);
   }
   .btn {
+    border-radius: var(--radius-md);
     text-decoration: none;
     font-weight: 600;
     font-size: 1.125rem;
   }
   .btn-primary {
-    background: var(--color-charcoal);
-    color: var(--color-bone);
+    background: var(--color-ink);
+    color: var(--color-surface);
     padding: 1.125rem var(--space-6);
   }
   .btn-primary:hover {
-    color: var(--color-bone);
+    color: var(--color-surface);
     background: var(--color-ink-muted);
   }
   .btn-secondary {
-    border: 2px solid var(--color-charcoal);
+    border: 2px solid var(--color-ink);
     padding: 1rem 1.875rem;
   }
 
@@ -120,19 +114,20 @@ const t = getDictionary(lang);
     max-width: 26.25rem;
   }
   .plane {
+    border-radius: var(--radius-lg);
     position: relative;
     aspect-ratio: 420 / 400;
-    border: 1px solid var(--color-charcoal);
-    background-color: var(--color-bone);
+    border: 1px solid var(--color-ink);
+    background-color: var(--color-surface);
     background-image:
-      linear-gradient(rgba(11, 14, 17, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(11, 14, 17, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(36, 18, 63, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36, 18, 63, 0.1) 1px, transparent 1px);
     background-size: 10% 10%;
     font-family: var(--font-mono);
   }
   .axis {
     position: absolute;
-    background: var(--color-charcoal);
+    background: var(--color-ink);
   }
   .axis-x {
     left: 0;
@@ -152,8 +147,8 @@ const t = getDictionary(lang);
     top: calc(50% - 10px);
     width: 20px;
     height: 20px;
-    border: 2px solid var(--color-charcoal);
-    background: var(--color-amber);
+    border: 2px solid var(--color-ink);
+    background: var(--color-accent);
   }
   .origin-label {
     position: absolute;
@@ -168,9 +163,10 @@ const t = getDictionary(lang);
     padding: 0;
   }
   .pillar {
+    border-radius: var(--radius-sm);
     position: absolute;
-    border: 1px solid var(--color-charcoal);
-    background: var(--color-bone);
+    border: 1px solid var(--color-ink);
+    background: var(--color-surface);
     padding: var(--space-2) var(--space-3);
     font-size: 0.75rem;
     font-weight: 500;
@@ -187,7 +183,8 @@ const t = getDictionary(lang);
   .pillar-3 {
     left: 22.9%;
     top: 75%;
-    background: var(--color-amber);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
   }
   .tick,
   .coord {
