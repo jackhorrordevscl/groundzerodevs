@@ -74,9 +74,11 @@ Options -Indexes
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always unset X-Powered-By
 
-  # HSTS is deliberately left off until HTTPS is confirmed stable on every host that shares
-  # this domain; it is hard to undo once browsers cache it. See docs/deploy.md.
-  # Header always set Strict-Transport-Security "max-age=31536000"
+  # HSTS rollout (see docs/deploy.md): start with a short max-age so a mistake expires in
+  # minutes. Raise it to 31536000 once the site has run cleanly for a few days. Do not add
+  # includeSubDomains or preload before every host under this domain is confirmed on HTTPS;
+  # both are hard to undo once browsers cache them.
+  Header always set Strict-Transport-Security "max-age=300"
 
   # No Content-Security-Policy on purpose: it would have to allow fonts.googleapis.com (CSS),
   # fonts.gstatic.com (font files), the inline styles/scripts Astro emits and, when enabled,

@@ -67,7 +67,7 @@ If the form does not deliver: `error_log` in `public_html` (look for `contact.ph
 | Headers | nosniff, `SAMEORIGIN` framing, referrer policy, minimal Permissions-Policy. |
 | No directory listing | `Options -Indexes`. |
 
-Deliberately not set: **HSTS** (commented in `.htaccess`; enable `max-age=31536000` only once HTTPS has been stable for a while, it is hard to undo) and **CSP** (would need to allow `fonts.googleapis.com`, `fonts.gstatic.com`, Astro's inline styles/scripts and, with analytics, `static.cloudflareinsights.com` and `cloudflareinsights.com`; not verifiable without the live host).
+**HSTS** is set in `.htaccess` with `max-age=300` (rollout started 2026-11-23). After a few days without problems, raise it to `max-age=31536000`; add `includeSubDomains` or `preload` only after every host under the domain is confirmed on valid HTTPS (checked 2026-11-23: apex, `www`, `mail`, `cpanel`, `webmail`, `umbral`, `umbralapi` and `judired` all serve valid certificates). Deliberately not set: **CSP** (would need to allow `fonts.googleapis.com`, `fonts.gstatic.com`, Astro's inline styles/scripts and, with analytics, `static.cloudflareinsights.com` and `cloudflareinsights.com`; not verifiable without the live host).
 
 `allowed_hosts` in `contact.config.php` stays empty: the form is posted from the same host that serves the page, and `www` redirects to the apex.
 
