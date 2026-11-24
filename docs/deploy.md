@@ -62,7 +62,7 @@ If the form does not deliver: `error_log` in `public_html` (look for `contact.ph
 | --- | --- |
 | HTTPS + apex redirect | Any `http://` or `www.` request goes to `https://groundzerodevs.com/...` in one 301. Only for `groundzerodevs.com` and `www.` hosts, so other subdomains sharing `public_html` are untouched. `/.well-known/` validation paths stay on HTTP for AutoSSL. |
 | Deny 403 | `contact.config.php`, `contact.local.php` (and backups), dotfiles, `*.md`, `*.log`, and similar. |
-| Cache | HTML/XML/TXT `no-cache`; icons, social image and case screenshots (`.webp`) one day; `_astro/*` one year immutable (currently no such files, the build inlines CSS). |
+| Cache | HTML/XML/TXT `no-cache`; icons, social image and any other stable-name image one day; `_astro/*` one year immutable (hashed fonts and resized case screenshots live there). |
 | Compression | Brotli or gzip when the modules exist. |
 | Headers | nosniff, `SAMEORIGIN` framing, referrer policy, minimal Permissions-Policy. |
 | No directory listing | `Options -Indexes`. |

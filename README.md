@@ -57,7 +57,7 @@ PHP_BIN=/path/to/php npm run test:contact   # PHP_BIN defaults to `php` on PATH
 | `src/i18n/` | Typed dictionaries: `types.ts` (shape), `es.ts` (default), `en.ts`. |
 | `src/data/cases.ts` | Case URLs, status and image paths. |
 | `src/pages/` | `/` (ES) and `/en/` (EN). |
-| `public/` | `contact.php`, `contact.config.php`, `.htaccess`, `robots.txt`, favicons, OG image, case screenshots in `public/cases/`. |
+| `public/` | `contact.php`, `contact.config.php`, `.htaccess`, `robots.txt`, favicons, OG image, case screenshots in `src/assets/cases/` (resized at build). |
 | `tests/` | Contact handler tests. |
 | `docs/` | Deploy, email and analytics guides. |
 | `odd/tasks/` | Working plan and decisions log. |
@@ -66,7 +66,7 @@ PHP_BIN=/path/to/php npm run test:contact   # PHP_BIN defaults to `php` on PATH
 
 1. Add or update the entry in `src/data/cases.ts` (URL, status, image path).
 2. Write the case copy in **both** `src/i18n/es.ts` and `src/i18n/en.ts`.
-3. Add a 1440x900 WebP screenshot of the public site to `public/cases/` (never the interior of an app, never client user data).
+3. Add a 1440x900 WebP screenshot of the public site to `src/assets/cases/` (never the interior of an app, never client user data).
 4. Run `npm run build` and check `/` and `/en/`.
 
 ## Configuration
