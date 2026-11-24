@@ -61,9 +61,10 @@ Options -Indexes
   <FilesMatch "(?i)\.(html|xml|txt)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
-  # Icons, social image and case screenshots keep stable names: one day.
+  # Icons, social image and case screenshots keep stable names: one day. Hashed _astro/ files are excluded (env=!) so FilesMatch
+  # does not override their immutable cache below.
   <FilesMatch "(?i)\.(ico|svg|png|webp|jpe?g|avif)$">
-    Header set Cache-Control "public, max-age=86400"
+    Header set Cache-Control "public, max-age=86400" env=!GZD_IMMUTABLE
   </FilesMatch>
   # Hashed build assets never change under the same name.
   Header set Cache-Control "public, max-age=31536000, immutable" env=GZD_IMMUTABLE
