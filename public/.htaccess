@@ -61,8 +61,8 @@ Options -Indexes
   <FilesMatch "(?i)\.(html|xml|txt)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
-  # Icons and social image keep stable names: one day.
-  <FilesMatch "(?i)\.(ico|svg|png)$">
+  # Icons, social image and case screenshots keep stable names: one day.
+  <FilesMatch "(?i)\.(ico|svg|png|webp|jpe?g|avif)$">
     Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
   # Hashed build assets never change under the same name.
